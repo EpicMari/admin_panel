@@ -12,7 +12,7 @@ export const themes = {
     ghostWhite: "#f8f9fd",
     green: "#557d7a",
     lightGreen: "#f1f6f5",
-    grey: "#bcbcbe",
+    grey: "#808080",
     red: "#ff0000",
   },
 };

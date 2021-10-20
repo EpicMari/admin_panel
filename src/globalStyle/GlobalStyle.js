@@ -1,6 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+  #root {
+   display: flex;
+  }
+
   html {
     box-sizing: border-box;
   }
@@ -9,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: inherit;
   }
   
-  body {
+   * {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;

@@ -4,4 +4,6 @@ export const routes = {
   messages: "/messages",
   trash: "/trash",
   settings: "/settings",
+  help: "/help",
+  logout: "/logout",
 };
