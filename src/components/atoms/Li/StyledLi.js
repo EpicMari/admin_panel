@@ -4,6 +4,6 @@ export const StyledLi = styled.li`
   ${({ navBarLi }) =>
     navBarLi &&
     css`
-      margin-bottom: 15px;
+      margin: 0 0 15px 10px;
     `}
 `;

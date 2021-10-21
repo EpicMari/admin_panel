@@ -1,9 +1,9 @@
 import React from "react";
 import { StyledNavLink } from "./StyledNavLink";
 
-const NavLink = ({ children, to, mavBarNavLink }) => {
+const NavLink = ({ children, to, navBarNavLink, exact }) => {
   return (
-    <StyledNavLink to={to} mavBarNavLink={mavBarNavLink}>
+    <StyledNavLink exact={exact} to={to} navBarNavLink={navBarNavLink}>
       {children}
     </StyledNavLink>
   );
