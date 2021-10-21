@@ -5,5 +5,5 @@ export const routes = {
   trash: "/trash",
   settings: "/settings",
   help: "/help",
-  logout: "/logout",
+  login: "/login",
 };

@@ -68,7 +68,7 @@ const NavBar = () => {
             </NavLink>
           </Li>
           <Li navBarLi>
-            <NavLink navBarNavLink to={routes.logout}>
+            <NavLink navBarNavLink to={routes.login}>
               <LogoutIcon />
               <Span navBarMenuText>Logout</Span>
             </NavLink>
