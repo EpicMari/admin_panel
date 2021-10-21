@@ -9,6 +9,7 @@ import Trash from "../views/Trash";
 import HelpSupport from "../views/HelpSupport";
 import Settings from "../views/Settings";
 import Login from "../views/Login";
+import Register from "../views/Register";
 
 const Router = () => {
   return (
@@ -22,6 +23,7 @@ const Router = () => {
           <Route path={routes.help} component={HelpSupport} />
           <Route path={routes.settings} component={Settings} />
           <Route path={routes.login} component={Login} />
+          <Route path={routes.register} component={Register} />
         </Switch>
       </HeaderTemplate>
     </BrowserRouter>

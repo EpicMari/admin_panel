@@ -6,4 +6,5 @@ export const routes = {
   settings: "/settings",
   help: "/help",
   login: "/login",
+  register: "/register",
 };
