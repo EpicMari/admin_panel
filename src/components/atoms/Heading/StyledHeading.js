@@ -9,6 +9,11 @@ export const H2 = styled.h2`
       align-items: center;
       margin-left: 15px;
       color: ${({ theme }) => theme.colors.green};
+
+      svg.h-5 {
+        width: ${({ theme }) => theme.iconSize.l};
+        color: ${({ theme }) => theme.colors.gold};
+      }
     `}
 `;
 export const H3 = styled.h3``;

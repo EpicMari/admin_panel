@@ -13,15 +13,15 @@ import HelpCenterIcon from "@mui/icons-material/HelpCenter";
 import EmailIcon from "@mui/icons-material/Email";
 import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import BookIcon from "@mui/icons-material/Book";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
 import Span from "../../atoms/Span";
+import StarSvg from "../../../assets/StarSvg";
 
 const NavBar = () => {
   return (
     <Div navBarWrapper>
       <Div logoWrapper>
         <Heading headingType="h2" logoHeading>
-          <StarBorderIcon />
+          <StarSvg />
           <Span navBarMenuText>PanelStar</Span>
         </Heading>
       </Div>
