@@ -3,9 +3,9 @@ import RegisterForm from "../components/molecules/RegisterForm";
 
 const Register = () => {
   return (
-    <>
+    <div>
       <RegisterForm />
-    </>
+    </div>
   );
 };
 
