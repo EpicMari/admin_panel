@@ -6,6 +6,8 @@ import Link from "../../atoms/Link";
 import { routes } from "../../../routes";
 import { Form, Formik } from "formik";
 import { registerFormSchema } from "../../../utils/validationSchema";
+import { auth } from "../../../firebase/firebaseConfig";
+import { usersCollection } from "../../../firebase/firestoreUtils";
 
 const RegisterForm = () => {
   return (
@@ -19,7 +21,28 @@ const RegisterForm = () => {
           confirmPassword: "",
         }}
         validationSchema={registerFormSchema}
-        onSubmit={({ resetForm }) => {
+        onSubmit={(values, { resetForm }) => {
+          console.log(values);
+
+          const { email, password, firstName, lastName } = values;
+
+          auth
+            .createUserWithEmailAndPassword(email, password)
+            .then((item) => {
+              console.log(item);
+
+              usersCollection
+                .doc(item.user.uid)
+                .set({
+                  firstName,
+                  lastName,
+                  email,
+                  password,
+                })
+                .then((r) => console.log(r))
+                .catch((err) => console.log(err));
+            })
+            .catch((err) => console.log(err));
           resetForm();
         }}
       >

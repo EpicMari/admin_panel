@@ -6,6 +6,7 @@ import Link from "../../atoms/Link";
 import { routes } from "../../../routes";
 import { Formik, Form } from "formik";
 import { loginFormSchema } from "../../../utils/validationSchema";
+import { auth } from "../../../firebase/firebaseConfig";
 
 const LoginForm = () => {
   return (
@@ -16,7 +17,16 @@ const LoginForm = () => {
           password: "",
         }}
         validationSchema={loginFormSchema}
-        onSubmit={({ resetForm }) => {
+        onSubmit={(values, { resetForm }) => {
+          const { email, password } = values;
+
+          auth
+            .signInWithEmailAndPassword(email, password)
+            .then((item) => {
+              console.log(item);
+            })
+            .catch((err) => console.log(err));
+
           resetForm();
         }}
       >
