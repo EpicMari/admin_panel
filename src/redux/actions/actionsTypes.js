@@ -1,4 +1,6 @@
 export const actionsTypes = {
   LOG_USER: "LOG_USER",
   SET_ORDERS: "SET_ORDERS",
+  DELETE_ORDERS: "DELETE_ORDERS",
+  TOGGLE_MODAL_OPEN: "TOGGLE_MODAL_OPEN",
 };

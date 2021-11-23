@@ -1,8 +1,8 @@
 import { actionsTypes } from "../actions/actionsTypes";
 
-const initialState = { orders: [], currentUser: null };
+const initialState = { currentUser: null };
 
-const reducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -12,15 +12,9 @@ const reducer = (state = initialState, action) => {
         currentUser: payload,
       };
 
-    case actionsTypes.SET_ORDERS:
-      return {
-        ...state,
-        orders: payload,
-      };
-
     default:
       return state;
   }
 };
 
-export default reducer;
+export default userReducer;
