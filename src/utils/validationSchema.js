@@ -17,7 +17,7 @@ export const registerFormSchema = Yup.object().shape({
     .required("Enter your password")
     .min(3, "Password too short"),
   confirmPassword: Yup.string().when("password", {
-    is: (val) => (val && val.lenght > 0 ? true : false),
+    is: (val) => (val && val.length > 0 ? true : false),
     then: Yup.string().oneOf(
       [Yup.ref("password")],
       "Both password need to be the same"

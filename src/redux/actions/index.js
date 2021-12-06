@@ -15,6 +15,11 @@ export const deleteOrders = (ordersIds) => ({
   payload: ordersIds,
 });
 
-export const toggleModalOpen = () => ({
-  type: actionsTypes.TOGGLE_MODAL_OPEN,
+export const openModal = (modalType) => ({
+  type: actionsTypes.OPEN_MODAL,
+  payload: modalType,
+});
+
+export const closeModal = () => ({
+  type: actionsTypes.CLOSE_MODAL,
 });

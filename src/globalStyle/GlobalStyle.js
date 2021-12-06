@@ -17,7 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
   }
   
   a, button {

@@ -1,15 +1,28 @@
 import { actionsTypes } from "../actions/actionsTypes";
 
-const initialState = { isOpenModal: false };
+const initialState = {
+  modalConfig: { isModalOpen: false, modalType: "" },
+};
 
 const utilsReducer = (state = initialState, action) => {
   const { type, payload } = action;
-
   switch (type) {
-    case actionsTypes.TOGGLE_MODAL_OPEN:
+    case actionsTypes.OPEN_MODAL:
       return {
         ...state,
-        isOpenModal: !state.isOpenModal,
+        modalConfig: {
+          isModalOpen: true,
+          modalType: payload,
+        },
+      };
+
+    case actionsTypes.CLOSE_MODAL:
+      return {
+        ...state,
+        modalConfig: {
+          ...state.modalConfig,
+          isModalOpen: false,
+        },
       };
 
     default:
