@@ -1,32 +1,55 @@
-import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import React, { useContext } from "react";
+import { BrowserRouter, Switch } from "react-router-dom";
 import { routes } from "../routes";
-import HeaderTemplate from "../templates/HeaderTemplate";
 import Dashboard from "../views/Dashboard";
 import Orders from "../views/Orders";
 import Messages from "../views/Messages";
 import Trash from "../views/Trash";
-import HelpSupport from "../views/HelpSupport";
 import Settings from "../views/Settings";
 import Login from "../views/Login";
 import Register from "../views/Register";
+import LoggedRoute from "./LoggedRoute";
+import AuthContext from "../context";
+import { Redirect } from "react-router-dom";
 
 const Router = () => {
+  const { currentUser } = useContext(AuthContext);
   return (
-    <BrowserRouter>
-      <HeaderTemplate>
+    <>
+      <BrowserRouter>
+        {typeof currentUser === "object" && <Redirect to={routes.dashboard} />}
         <Switch>
-          <Route exact path={routes.dashboard} component={Dashboard} />
-          <Route path={routes.orders} component={Orders} />
-          <Route path={routes.messages} component={Messages} />
-          <Route path={routes.trash} component={Trash} />
-          <Route path={routes.help} component={HelpSupport} />
-          <Route path={routes.settings} component={Settings} />
-          <Route path={routes.login} component={Login} />
-          <Route path={routes.register} component={Register} />
+          <LoggedRoute
+            exact
+            path={routes.dashboard}
+            component={Dashboard}
+            isLog={currentUser}
+          />
+          <LoggedRoute
+            path={routes.orders}
+            component={Orders}
+            isLog={currentUser}
+          />
+          <LoggedRoute
+            path={routes.messages}
+            component={Messages}
+            isLog={currentUser}
+          />
+          <LoggedRoute
+            path={routes.trash}
+            component={Trash}
+            isLog={currentUser}
+          />
+          <LoggedRoute
+            path={routes.settings}
+            component={Settings}
+            isLog={currentUser}
+          />
+          <LoggedRoute path={routes.login} component={Login} />
+          <LoggedRoute path={routes.register} component={Register} />
         </Switch>
-      </HeaderTemplate>
-    </BrowserRouter>
+      </BrowserRouter>
+    </>
   );
 };
 

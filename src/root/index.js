@@ -6,6 +6,7 @@ import Router from "../routing";
 import { themes } from "../themes/themes";
 import { useDispatch } from "react-redux";
 import { setOrders } from "../redux/actions";
+import AuthProvider from "../providers/AuthProvider";
 
 const Root = () => {
   const dispatch = useDispatch();
@@ -30,10 +31,12 @@ const Root = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={themes}>
-      <GlobalStyle />
-      <Router />
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider theme={themes}>
+        <GlobalStyle />
+        <Router />
+      </ThemeProvider>
+    </AuthProvider>
   );
 };
 

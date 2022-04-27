@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import TextField from "@mui/material/TextField";
-import Button from "../../atoms/Button";
 import Paragraph from "../../atoms/Paragraph";
-import Link from "../../atoms/Link";
 import { routes } from "../../../routes";
 import { Formik, Form } from "formik";
 import { loginFormSchema } from "../../../utils/validationSchema";
-import { auth } from "../../../firebase/firebaseConfig";
+import AuthContext from "../../../context";
+import { Button } from "@mui/material";
+import { StyledLink } from "./StyledLoginForm";
 
 const LoginForm = () => {
+  const { signIn } = useContext(AuthContext);
   return (
     <>
       <Formik
@@ -19,14 +20,7 @@ const LoginForm = () => {
         validationSchema={loginFormSchema}
         onSubmit={(values, { resetForm }) => {
           const { email, password } = values;
-
-          auth
-            .signInWithEmailAndPassword(email, password)
-            .then((item) => {
-              console.log(item);
-            })
-            .catch((err) => console.log(err));
-
+          signIn(email, password);
           resetForm();
         }}
       >
@@ -47,12 +41,14 @@ const LoginForm = () => {
               value={values.password}
               onChange={handleChange}
             />
-            <Button type="submit">Login</Button>
+            <Button variant="contained" type="submit">
+              Login
+            </Button>
           </Form>
         )}
       </Formik>
-      <Paragraph>Don't have account?</Paragraph>
-      <Link to={routes.register}>Sign Up</Link>
+      <Paragraph size="l">Don't have account?</Paragraph>
+      <StyledLink to={routes.register}>Sign Up</StyledLink>
     </>
   );
 };

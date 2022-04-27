@@ -1,9 +1,3 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-export const StyledSpan = styled.span`
-  ${({ navBarMenuText }) =>
-    navBarMenuText &&
-    css`
-      margin-left: 10px;
-    `}
-`;
+export const StyledSpan = styled.span``;

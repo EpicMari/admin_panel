@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import TextField from "@mui/material/TextField";
-import Button from "../../atoms/Button";
 import Paragraph from "../../atoms/Paragraph";
-import Link from "../../atoms/Link";
 import { routes } from "../../../routes";
 import { Form, Formik } from "formik";
 import { registerFormSchema } from "../../../utils/validationSchema";
-import { auth } from "../../../firebase/firebaseConfig";
-import { usersCollection } from "../../../firebase/firestoreUtils";
+import AuthContext from "../../../context";
+import { Button } from "@mui/material";
+import { StyledLink } from "../../atoms/Link/StyledLink";
 
 const RegisterForm = () => {
+  const { createAcc } = useContext(AuthContext);
   return (
     <>
       <Formik
@@ -25,24 +25,7 @@ const RegisterForm = () => {
           console.log(values);
 
           const { email, password, firstName, lastName } = values;
-
-          auth
-            .createUserWithEmailAndPassword(email, password)
-            .then((item) => {
-              console.log(item);
-
-              usersCollection
-                .doc(item.user.uid)
-                .set({
-                  firstName,
-                  lastName,
-                  email,
-                  password,
-                })
-                .then((r) => console.log(r))
-                .catch((err) => console.log(err));
-            })
-            .catch((err) => console.log(err));
+          createAcc(email, password, firstName, lastName);
           resetForm();
         }}
       >
@@ -85,12 +68,14 @@ const RegisterForm = () => {
               value={values.confirmPassword}
               onChange={handleChange}
             />
-            <Button type="submit">SIGN UP</Button>
+            <Button variant="contained" type="submit">
+              SIGN UP
+            </Button>
           </Form>
         )}
       </Formik>
-      <Paragraph>Already have account?</Paragraph>
-      <Link to={routes.login}>Log In</Link>
+      <Paragraph size="m">Already have account?</Paragraph>
+      <StyledLink to={routes.login}>Log In</StyledLink>
     </>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "../components/molecules/NavBar";
 import Modal from "../components/molecules/Modal";
 
-const HeaderTemplate = ({ children }) => {
+const NavigationTemplate = ({ children }) => {
   return (
     <>
       <NavBar />
@@ -12,4 +12,4 @@ const HeaderTemplate = ({ children }) => {
   );
 };
 
-export default HeaderTemplate;
+export default NavigationTemplate;

@@ -1,7 +1,7 @@
 import { actionsTypes } from "./actionsTypes";
 
-export const logUser = (user) => ({
-  type: actionsTypes.LOG_USER,
+export const setUser = (user) => ({
+  type: actionsTypes.SET_USER,
   payload: user,
 });
 
