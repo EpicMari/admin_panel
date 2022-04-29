@@ -6,14 +6,12 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import EmailIcon from "@mui/icons-material/Email";
 import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import BookIcon from "@mui/icons-material/Book";
-import StarSvg from "../../../assets/StarSvg";
+import Logo from "../../atoms/Logo";
 import {
   StyledButton,
   StyledFirstNav,
-  StyledHeading,
   StyledList,
   StyledListItem,
-  StyledLogoBox,
   StyledNavLink,
   StyledSecondNav,
   StyledSpan,
@@ -25,33 +23,28 @@ const NavBar = () => {
   const { signOut } = useContext(AuthContext);
   return (
     <StyledWrapper>
-      <StyledLogoBox>
-        <StyledHeading headingType="h1">
-          <StarSvg />
-          <StyledSpan>PanelStar</StyledSpan>
-        </StyledHeading>
-      </StyledLogoBox>
+      <Logo size="xs" />
       <StyledFirstNav>
         <StyledList>
-          <StyledListItem>
+          <StyledListItem key={routes.dashboard}>
             <StyledNavLink exact to={routes.dashboard}>
               <HomeIcon />
               <StyledSpan>Dashboard</StyledSpan>
             </StyledNavLink>
           </StyledListItem>
-          <StyledListItem>
+          <StyledListItem key={routes.orders}>
             <StyledNavLink to={routes.orders}>
               <BookIcon />
               <StyledSpan>Orders</StyledSpan>
             </StyledNavLink>
           </StyledListItem>
-          <StyledListItem>
+          <StyledListItem key={routes.messages}>
             <StyledNavLink to={routes.messages}>
               <EmailIcon />
               <StyledSpan>Messages</StyledSpan>
             </StyledNavLink>
           </StyledListItem>
-          <StyledListItem>
+          <StyledListItem key={routes.trash}>
             <StyledNavLink to={routes.trash}>
               <DeleteSweepIcon />
               <StyledSpan>Trash</StyledSpan>
@@ -61,7 +54,7 @@ const NavBar = () => {
       </StyledFirstNav>
       <StyledSecondNav>
         <StyledList>
-          <StyledListItem>
+          <StyledListItem key={routes.settings}>
             <StyledNavLink to={routes.settings}>
               <SettingsIcon />
               <StyledSpan>Settings</StyledSpan>

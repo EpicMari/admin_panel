@@ -1,34 +1,36 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import polygon from "../../../assets/mainLayout/polygon.svg";
+
+import { NavLink } from "react-router-dom";
 
 export const StyledWrapper = styled.div`
   height: 100vh;
   width: 220px;
+  background: url(${polygon}) center / cover no-repeat;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-`;
-
-export const StyledLogoBox = styled.div`
-  margin: 40px 0 60px;
+  div:first-child {
+    margin: 40px 0;
+  }
 `;
 
 export const StyledList = styled.ul``;
 
 export const StyledFirstNav = styled.nav`
   position: absolute;
-  width: 210px;
+  width: 220px;
 `;
 export const StyledSecondNav = styled(StyledFirstNav)`
   bottom: 0;
 `;
 
 export const StyledListItem = styled.li`
-  margin: 0 0 15px 10px;
+  margin: 0 10px 15px;
 `;
 
 export const StyledNavLink = styled(NavLink)`
   padding: 10px;
-  color: ${({ theme }) => theme.colors.grey};
+  color: ${({ theme }) => theme.colors.white};
   display: flex;
   align-items: center;
   font-size: ${({ theme }) => theme.fontSize.l};
@@ -37,8 +39,7 @@ export const StyledNavLink = styled(NavLink)`
 
   &:hover,
   &.active {
-    color: ${({ theme }) => theme.colors.green};
-    background-color: ${({ theme }) => theme.colors.lightGreen};
+    background-color: ${({ theme }) => theme.colors.lightBlue};
   }
 `;
 
@@ -47,7 +48,7 @@ export const StyledButton = styled.button`
   background-color: transparent;
   border: none;
   padding: 10px;
-  color: ${({ theme }) => theme.colors.grey};
+  color: ${({ theme }) => theme.colors.white};
   display: flex;
   align-items: center;
   font-size: ${({ theme }) => theme.fontSize.l};
@@ -55,23 +56,11 @@ export const StyledButton = styled.button`
   transition: 0.5s color, 0.5s background-color;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.green};
-    background-color: ${({ theme }) => theme.colors.lightGreen};
+    background-color: ${({ theme }) => theme.colors.lightBlue};
   }
 `;
 
 export const StyledSpan = styled.span`
   margin-left: 10px;
-`;
-
-export const StyledHeading = styled.h2`
-  display: flex;
-  align-items: center;
-  margin-left: 15px;
-  color: ${({ theme }) => theme.colors.green};
-
-  svg.h-5 {
-    width: ${({ theme }) => theme.iconSize.l};
-    color: ${({ theme }) => theme.colors.gold};
-  }
+  color: ${({ theme }) => theme.colors.white};
 `;
