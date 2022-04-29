@@ -11,4 +11,7 @@ export const StyledParagraph = styled.p`
       : size === "xxl"
       ? theme.fontSize.xxl
       : theme.fontSize.s};
+
+  text-align: ${({ align }) =>
+    align === "left" ? "left" : align === "right" ? "right" : "center"};
 `;

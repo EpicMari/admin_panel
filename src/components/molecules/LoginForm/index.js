@@ -1,15 +1,17 @@
 import React, { useContext } from "react";
 import TextField from "@mui/material/TextField";
-import Paragraph from "../../atoms/Paragraph";
 import { routes } from "../../../routes";
 import { Formik, Form } from "formik";
 import { loginFormSchema } from "../../../utils/validationSchema";
 import AuthContext from "../../../context";
 import { Button } from "@mui/material";
-import { StyledLink } from "./StyledLoginForm";
+import Paragraph from "../../atoms/Paragraph";
+import { useHistory } from "react-router-dom";
+import { StyledSignUpBox } from "./StyledLoginForm";
 
 const LoginForm = () => {
   const { signIn } = useContext(AuthContext);
+  const history = useHistory();
   return (
     <>
       <Formik
@@ -47,8 +49,16 @@ const LoginForm = () => {
           </Form>
         )}
       </Formik>
-      <Paragraph size="l">Don't have account?</Paragraph>
-      <StyledLink to={routes.register}>Sign Up</StyledLink>
+      <StyledSignUpBox>
+        <Paragraph size="l">Don't have account?</Paragraph>
+        <Button
+          color="primary"
+          variant="outlined"
+          onClick={() => history.push(routes.register)}
+        >
+          Sign Up
+        </Button>
+      </StyledSignUpBox>
     </>
   );
 };

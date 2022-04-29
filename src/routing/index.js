@@ -1,16 +1,15 @@
 import React, { useContext } from "react";
-import { BrowserRouter, Switch } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { routes } from "../routes";
 import Dashboard from "../views/Dashboard";
 import Orders from "../views/Orders";
 import Messages from "../views/Messages";
 import Trash from "../views/Trash";
 import Settings from "../views/Settings";
-import Login from "../views/Login";
-import Register from "../views/Register";
 import LoggedRoute from "./LoggedRoute";
 import AuthContext from "../context";
-import { Redirect } from "react-router-dom";
+import Login from "../views/Login/index";
+import Register from "../views/Register/index";
 
 const Router = () => {
   const { currentUser } = useContext(AuthContext);
@@ -45,8 +44,8 @@ const Router = () => {
             component={Settings}
             isLog={currentUser}
           />
-          <LoggedRoute path={routes.login} component={Login} />
-          <LoggedRoute path={routes.register} component={Register} />
+          <Route path={routes.login} component={Login} />
+          <Route path={routes.register} component={Register} />
         </Switch>
       </BrowserRouter>
     </>

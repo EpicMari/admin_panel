@@ -6,10 +6,12 @@ import { Form, Formik } from "formik";
 import { registerFormSchema } from "../../../utils/validationSchema";
 import AuthContext from "../../../context";
 import { Button } from "@mui/material";
-import { StyledLink } from "../../atoms/Link/StyledLink";
+import { useHistory } from "react-router-dom";
+import { StyledLogInBox } from "./StyledRegisterForm";
 
 const RegisterForm = () => {
   const { createAcc } = useContext(AuthContext);
+  const history = useHistory();
   return (
     <>
       <Formik
@@ -74,8 +76,16 @@ const RegisterForm = () => {
           </Form>
         )}
       </Formik>
-      <Paragraph size="m">Already have account?</Paragraph>
-      <StyledLink to={routes.login}>Log In</StyledLink>
+      <StyledLogInBox>
+        <Paragraph size="l">Already have account?</Paragraph>
+        <Button
+          color="primary"
+          variant="outlined"
+          onClick={() => history.push(routes.login)}
+        >
+          Log In
+        </Button>
+      </StyledLogInBox>
     </>
   );
 };
