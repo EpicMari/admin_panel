@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../../redux/actions";
 import { listTypesModal } from "../../../utils/listTypes";
+import { deleteOrderFromFirestore } from "../../../firebase/firestoreUtils";
 
 const style = {
   position: "absolute",
@@ -21,6 +22,9 @@ const Modal = () => {
   const dispatch = useDispatch();
   const modalConfig = useSelector(
     ({ utilsReducer }) => utilsReducer.modalConfig
+  );
+  const selectedOrders = useSelector(
+    ({ ordersReducer }) => ordersReducer.selectedOrders
   );
   return (
     <ModalMui
@@ -42,10 +46,21 @@ const Modal = () => {
         ) : modalConfig.modalType === listTypesModal.delete ? (
           <>
             <h2>Sure to delete?</h2>
-            <Button color="error" variant="contained">
+            <Button
+              onClick={() => dispatch(closeModal())}
+              color="error"
+              variant="contained"
+            >
               no
             </Button>
-            <Button color="primary" variant="contained">
+            <Button
+              onClick={() => {
+                deleteOrderFromFirestore(selectedOrders);
+                dispatch(closeModal());
+              }}
+              color="primary"
+              variant="contained"
+            >
               yes
             </Button>
           </>

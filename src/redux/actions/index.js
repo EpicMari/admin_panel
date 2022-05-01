@@ -10,6 +10,11 @@ export const setOrders = (orders) => ({
   payload: orders,
 });
 
+export const selectedOrders = (orders) => ({
+  type: actionsTypes.SELECTED_ORDERS,
+  payload: orders,
+});
+
 export const deleteOrders = (ordersIds) => ({
   type: actionsTypes.DELETE_ORDERS,
   payload: ordersIds,

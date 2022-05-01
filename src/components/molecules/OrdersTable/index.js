@@ -24,8 +24,9 @@ import { visuallyHidden } from "@mui/utils";
 import { useDispatch, useSelector } from "react-redux";
 import EditIcon from "@mui/icons-material/Edit";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { openModal } from "../../../redux/actions";
+import { openModal, selectedOrders } from "../../../redux/actions";
 import { listTypesModal } from "../../../utils/listTypes";
+import { headCells } from "../../../utils/headCells";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -56,39 +57,6 @@ function stableSort(array, comparator) {
   });
   return stabilizedThis.map((el) => el[0]);
 }
-
-const headCells = [
-  {
-    id: "name",
-    numeric: false,
-    disablePadding: true,
-    label: "Name",
-  },
-  {
-    id: "email",
-    numeric: true,
-    disablePadding: false,
-    label: "Email",
-  },
-  {
-    id: "totalPrice",
-    numeric: true,
-    disablePadding: false,
-    label: "Total Price",
-  },
-  {
-    id: "createdAt",
-    numeric: true,
-    disablePadding: false,
-    label: "Create order",
-  },
-  {
-    id: "status",
-    numeric: true,
-    disablePadding: false,
-    label: "Status",
-  },
-];
 
 function EnhancedTableHead(props) {
   const {
@@ -193,7 +161,10 @@ const EnhancedTableToolbar = ({ numSelected, clearSelectedOrders }) => {
         {numSelected.length > 0 ? (
           <Tooltip title="Delete">
             <IconButton
-              onClick={() => dispatch(openModal(listTypesModal.delete))}
+              onClick={() => {
+                dispatch(openModal(listTypesModal.delete));
+                dispatch(selectedOrders(numSelected));
+              }}
             >
               <DeleteIcon />
             </IconButton>
