@@ -1,6 +1,10 @@
 import { actionsTypes } from "../actions/actionsTypes";
 
-const initialState = { orders: [], selectedOrders: [] };
+const initialState = {
+  orders: [],
+  selected: [],
+  showProductsFromOrder: null,
+};
 
 const ordersReducer = (state = initialState, action) => {
   const { type, payload } = action;
@@ -11,10 +15,17 @@ const ordersReducer = (state = initialState, action) => {
         ...state,
         orders: payload,
       };
-    case actionsTypes.SELECTED_ORDERS:
+    case actionsTypes.SELECTED:
       return {
         ...state,
-        selectedOrders: payload,
+        selected: payload,
+      };
+    case actionsTypes.SHOW_PRODUCTS_FROM_ORDER:
+      return {
+        ...state,
+        showProductsFromOrder: state.orders.find((order) =>
+          payload.includes(order.docId)
+        ),
       };
     case actionsTypes.DELETE_ORDERS:
       return {

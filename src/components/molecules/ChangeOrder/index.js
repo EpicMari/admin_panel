@@ -9,17 +9,21 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Button } from "@mui/material";
 
-const ChangeOrder = ({ row: { status, totalPrice, createdAt } }) => {
-  const [value, setValue] = useState(createdAt);
-  const [select, setSelect] = useState(status);
-  const [price, setPrice] = useState(totalPrice);
-
+const ChangeOrder = ({
+  row: { status, totalPrice, createdAt, docId },
+  closeModal,
+  editOrder,
+}) => {
+  const [newData, setNewData] = useState(createdAt);
+  const [newStatus, setNewStatus] = useState(status);
+  const [newPrice, setNewPrice] = useState(totalPrice);
+  console.log(docId);
   const handlePrice = (e) => {
-    setPrice(e.target.value);
+    setNewPrice(e.target.value);
   };
 
   const handleSelect = (event) => {
-    setSelect(event.target.value);
+    setNewStatus(event.target.value);
   };
 
   return (
@@ -27,40 +31,46 @@ const ChangeOrder = ({ row: { status, totalPrice, createdAt } }) => {
       <TextField
         variant="standard"
         label="Price"
-        value={price}
+        value={newPrice}
         onChange={handlePrice}
         type="number"
       />
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DatePicker
           label="Basic example"
-          value={value}
+          value={newData}
           onChange={(newValue) => {
-            setValue(newValue);
+            setNewData(newValue);
           }}
           renderInput={(params) => <TextField {...params} />}
         />
       </LocalizationProvider>
-
       <FormControl>
         <InputLabel id="demo-simple-select-label">Status</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={select}
+          value={newStatus}
           label="Status"
           onChange={handleSelect}
-          defaultValue={select}
+          defaultValue={newStatus}
           variant="standard"
         >
-          <MenuItem value="pending">pending</MenuItem>
-          <MenuItem value="complete">complete</MenuItem>
+          <MenuItem value="PENDING">PENDING</MenuItem>
+          <MenuItem value="COMPLETED">COMPLETED</MenuItem>
         </Select>
       </FormControl>
-      <Button color="primary" variant="contained">
+      <Button
+        color="primary"
+        variant="contained"
+        onClick={() => {
+          editOrder(docId, newStatus, newPrice, newData);
+          closeModal();
+        }}
+      >
         Save
       </Button>
-      <Button color="error" variant="contained">
+      <Button color="error" variant="contained" onClick={closeModal}>
         Cancel
       </Button>
     </>

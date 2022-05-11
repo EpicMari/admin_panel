@@ -1,32 +1,47 @@
-export const headCells = [
+export const ordersHeadCells = [
+  {
+    id: "docId",
+    numberic: false,
+    disablePadding: true,
+    label: "ID",
+  },
   {
     id: "name",
     numeric: false,
-    disablePadding: true,
+    disablePadding: false,
     label: "Name",
   },
+  { id: "products", numeric: false, disablePadding: false, label: "Products" },
   {
     id: "email",
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: "Email",
   },
   {
     id: "totalPrice",
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: "Total Price",
   },
   {
     id: "createdAt",
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: "Create order",
   },
   {
     id: "status",
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: "Status",
   },
+];
+
+export const productsOrderHeadCells = [
+  { id: "id", numeric: false, disablePadding: false, label: "ID" },
+  { id: "name", numeric: false, disablePadding: false, label: "Name" },
+  { id: "price", numeric: false, disablePadding: false, label: "Price" },
+  { id: "quantity", numberic: false, disablePadding: false, label: "Quantity" },
+  { id: "category", numberic: false, disablePadding: false, label: "Category" },
 ];

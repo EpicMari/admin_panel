@@ -8,3 +8,12 @@ export const deleteOrderFromFirestore = (ordersToDelete) => {
     ordersCollection.doc(orderId).delete();
   });
 };
+
+export const editOrderFromFirestore = (
+  orderId,
+  status,
+  totalPrice,
+  createdAt
+) => {
+  ordersCollection.doc(orderId).update({ status, totalPrice, createdAt });
+};

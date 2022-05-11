@@ -10,14 +10,19 @@ export const setOrders = (orders) => ({
   payload: orders,
 });
 
-export const selectedOrders = (orders) => ({
-  type: actionsTypes.SELECTED_ORDERS,
+export const setSelected = (orders) => ({
+  type: actionsTypes.SELECTED,
   payload: orders,
 });
 
 export const deleteOrders = (ordersIds) => ({
   type: actionsTypes.DELETE_ORDERS,
   payload: ordersIds,
+});
+
+export const showProductsFromOrder = (orderId) => ({
+  type: actionsTypes.SHOW_PRODUCTS_FROM_ORDER,
+  payload: orderId,
 });
 
 export const openModal = (modalType) => ({

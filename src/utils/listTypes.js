@@ -3,3 +3,8 @@ export const listTypesModal = {
   edit: "edit",
   delete: "delete",
 };
+
+export const listTypesTable = {
+  orders: "orders",
+  productsFromOrder: "productsFromOrder",
+};
