@@ -82,6 +82,7 @@ const Modal = () => {
             <Button
               onClick={() => {
                 deleteOrderFromFirestore(selected);
+                dispatch(setSelected([]));
                 dispatch(closeModal());
               }}
               color="primary"

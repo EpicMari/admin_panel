@@ -1,3 +1,4 @@
+import { doc, getDoc } from "firebase/firestore";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AuthContext from "../context";
@@ -47,8 +48,9 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const verificationUser = auth.onAuthStateChanged((user) => {
       if (user) {
-        const userByUid = usersCollection.doc(user.uid);
-        userByUid.get().then((doc) => {
+        // const userByUid = usersCollection.doc(user.uid);
+        const userByUid = getDoc(doc(usersCollection, user.uid));
+        userByUid.then((doc) => {
           if (doc.exists) {
             const userData = doc.data();
             const userAcc = {
@@ -66,6 +68,29 @@ const AuthProvider = ({ children }) => {
     });
     return verificationUser;
   }, []);
+
+  // useEffect(() => {
+  //   const verificationUser = auth.onAuthStateChanged((user) => {
+  //     if (user) {
+  // const userByUid = usersCollection.doc(user.uid);
+  //       userByUid.get().then((doc) => {
+  //         if (doc.exists) {
+  //           const userData = doc.data();
+  //           const userAcc = {
+  //             id: user.uid,
+  //             email: userData.email,
+  //             firstName: userData.firstName,
+  //             lastName: userData.lastName,
+  //           };
+  //           dispatch(setUser(userAcc));
+  //         }
+  //       });
+  //     } else {
+  //       dispatch(setUser("signedout"));
+  //     }
+  //   });
+  //   return verificationUser;
+  // }, []);
 
   return (
     <AuthContext.Provider value={{ signIn, signOut, createAcc, currentUser }}>
