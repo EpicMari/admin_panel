@@ -14,4 +14,6 @@ export const StyledParagraph = styled.p`
 
   text-align: ${({ align }) =>
     align === "left" ? "left" : align === "right" ? "right" : "center"};
+  color: ${({ color, theme }) =>
+    color === "grey" ? theme.colors.grey : theme.colors.white};
 `;

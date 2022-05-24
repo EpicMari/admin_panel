@@ -17,8 +17,10 @@ export const StyledWrapper = styled.div`
 export const StyledList = styled.ul``;
 
 export const StyledFirstNav = styled.nav`
-  position: absolute;
   width: 220px;
+  &:last-of-type {
+    position: absolute;
+  }
 `;
 export const StyledSecondNav = styled(StyledFirstNav)`
   bottom: 0;

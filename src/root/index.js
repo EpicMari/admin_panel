@@ -4,13 +4,39 @@ import { ordersCollection } from "../firebase/firestoreUtils";
 import { GlobalStyle } from "../globalStyle/GlobalStyle";
 import Router from "../routing";
 import { themes } from "../themes/themes";
-import { useDispatch } from "react-redux";
-import { setOrders } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { setCoordinates, setOrders, setWeatherData } from "../redux/actions";
 import AuthProvider from "../providers/AuthProvider";
 import { onSnapshot } from "firebase/firestore";
+import axios from "axios";
 
 const Root = () => {
   const dispatch = useDispatch();
+  const weatherCords = useSelector(
+    ({ utilsReducer }) => utilsReducer.coordinates
+  );
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition((position) => {
+        dispatch(
+          setCoordinates({
+            lat: position.coords.latitude,
+            lot: position.coords.longitude,
+          })
+        );
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${weatherCords.lat}&lon=${weatherCords.lot}&units=metric&exclude=alerts,minutely&appid=${process.env.REACT_APP_WEATHER_API_KEY}`
+      )
+      .then((res) => dispatch(setWeatherData(res.data)))
+      .catch((err) => console.log(err));
+  }, [dispatch, weatherCords]);
 
   useEffect(() => {
     const subscribe = onSnapshot(ordersCollection, (snapshot) => {

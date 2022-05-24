@@ -15,11 +15,11 @@ export const themes = {
   },
   colors: {
     white: "#FFFFFF",
-    lightWhite: "#fcfdff",
+    black: "#000000",
     ghostWhite: "#f8f9fd",
-    lightBlue: "#1D86EF",
+    lightBlue: "#104b84",
+    darkBlue: "#092a4c",
     grey: "#808080",
     red: "#ff0000",
-    gold: "#FFD700",
   },
 };

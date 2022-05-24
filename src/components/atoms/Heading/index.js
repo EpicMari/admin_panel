@@ -1,13 +1,13 @@
 import React from "react";
 import { H1, H2, H3, H4, H5, H6 } from "./StyledHeading";
 
-const Heading = ({ children, headingType, logoHeading }) => {
+const Heading = ({ children, headingType }) => {
   const _renderHeading = () => {
     switch (headingType) {
       case "h1":
         return <H1>{children}</H1>;
       case "h2":
-        return <H2 logoHeading={logoHeading}>{children}</H2>;
+        return <H2>{children}</H2>;
       case "h3":
         return <H3>{children}</H3>;
       case "h4":

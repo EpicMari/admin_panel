@@ -2,6 +2,8 @@ import { actionsTypes } from "../actions/actionsTypes";
 
 const initialState = {
   modalConfig: { isModalOpen: false, modalType: "" },
+  coordinates: { lat: 50.25, lot: 19 },
+  weatherData: null,
 };
 
 const utilsReducer = (state = initialState, action) => {
@@ -25,6 +27,17 @@ const utilsReducer = (state = initialState, action) => {
         },
       };
 
+    case actionsTypes.SET_COORDINATES:
+      return {
+        ...state,
+        coordinates: payload,
+      };
+
+    case actionsTypes.SET_WEATHER_DATA:
+      return {
+        ...state,
+        weatherData: payload,
+      };
     default:
       return state;
   }

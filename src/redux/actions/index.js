@@ -33,3 +33,13 @@ export const openModal = (modalType) => ({
 export const closeModal = () => ({
   type: actionsTypes.CLOSE_MODAL,
 });
+
+export const setCoordinates = (coordinates) => ({
+  type: actionsTypes.SET_COORDINATES,
+  payload: coordinates,
+});
+
+export const setWeatherData = (weatherData) => ({
+  type: actionsTypes.SET_WEATHER_DATA,
+  payload: weatherData,
+});

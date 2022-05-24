@@ -23,6 +23,7 @@
     "redux": "^4.1.1",
     "redux-devtools-extension": "^2.13.9",
     "styled-components": "^5.3.3",
+    "swiper": "^8.1.5",
     "web-vitals": "^1.1.2",
     "yup": "^0.32.11"
   },

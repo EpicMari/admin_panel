@@ -8,3 +8,8 @@ export const listTypesTable = {
   orders: "orders",
   productsFromOrder: "productsFromOrder",
 };
+
+export const listTypesWeather = {
+  today: "today",
+  week: "week",
+};

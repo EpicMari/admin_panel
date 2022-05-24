@@ -1,11 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import Weather from "../components/organisms/Weather";
 
 const Dashboard = () => {
-  return (
-    <div>
-      <h1>Dashboard</h1>
-    </div>
+  const weatherData = useSelector(
+    ({ utilsReducer }) => utilsReducer.weatherData
   );
+  return <>{weatherData ? <Weather /> : <p>loading</p>}</>;
 };
 
 export default Dashboard;

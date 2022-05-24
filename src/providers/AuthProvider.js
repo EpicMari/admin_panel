@@ -1,3 +1,7 @@
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,11 +16,9 @@ const AuthProvider = ({ children }) => {
 
   const createAcc = (email, password, firstName, lastName) => {
     dispatch(setUser(null));
-    auth
-      .createUserWithEmailAndPassword(email, password)
+    createUserWithEmailAndPassword(auth, email, password)
       .then((item) => {
         console.log(item);
-
         usersCollection
           .doc(item.user.uid)
           .set({
@@ -33,8 +35,7 @@ const AuthProvider = ({ children }) => {
 
   const signIn = (email, password) => {
     dispatch(setUser(null));
-    auth
-      .signInWithEmailAndPassword(email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then((user) => {
         console.log(user, "signIn");
       })
