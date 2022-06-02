@@ -2,14 +2,14 @@ import React, { useContext } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { routes } from "../routes";
 import Dashboard from "../views/Dashboard";
-import Orders from "../views/Orders";
 import Messages from "../views/Messages";
-import Trash from "../views/Trash";
 import Settings from "../views/Settings";
 import LoggedRoute from "./LoggedRoute";
 import AuthContext from "../context";
 import Login from "../views/Login/index";
 import Register from "../views/Register/index";
+import Orders from "../views/Orders/Orders";
+import Trash from "../views/Trash/Trash";
 
 const Router = () => {
   const { currentUser } = useContext(AuthContext);

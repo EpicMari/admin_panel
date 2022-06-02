@@ -43,3 +43,13 @@ export const setWeatherData = (weatherData) => ({
   type: actionsTypes.SET_WEATHER_DATA,
   payload: weatherData,
 });
+
+export const setDeletedOrders = (orders) => ({
+  type: actionsTypes.SET_DELETED_ORDERS,
+  payload: orders,
+});
+
+export const showProductsFromDeletedOrder = (orderId) => ({
+  type: actionsTypes.SHOW_PRODUCTS_FROM_DELETED_ORDER,
+  payload: orderId,
+});

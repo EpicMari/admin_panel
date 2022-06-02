@@ -8,9 +8,13 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import { alpha } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 import { openModal, setSelected } from "../../../../redux/actions";
-import { listTypesModal } from "../../../../utils/listTypes";
+import { listTypesModal, listTypesTable } from "../../../../utils/listTypes";
 
-const EnhancedTableToolbar = ({ numSelected, clearSelectedOrders }) => {
+const EnhancedTableToolbar = ({
+  numSelected,
+  clearSelectedOrders,
+  listTypes,
+}) => {
   const dispatch = useDispatch();
 
   return (
@@ -44,7 +48,11 @@ const EnhancedTableToolbar = ({ numSelected, clearSelectedOrders }) => {
             id="tableTitle"
             component="div"
           >
-            Orders
+            {listTypes === listTypesTable.orders
+              ? "Orders"
+              : listTypes === listTypesTable.deletedOrders
+              ? "Deleted Orders"
+              : "Products"}
           </Typography>
         )}
 

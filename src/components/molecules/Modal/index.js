@@ -24,6 +24,21 @@ const style = {
   p: 4,
 };
 
+const styleEdit = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "fit-content",
+  height: "fit-content",
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+  display: "flex",
+  flexDirection: "column",
+  gap: "10px",
+};
+
 const Modal = () => {
   const dispatch = useDispatch();
   const modalConfig = useSelector(
@@ -33,10 +48,16 @@ const Modal = () => {
   const productsFromOrder = useSelector(
     ({ ordersReducer }) => ordersReducer.showProductsFromOrder
   );
-
+  const productsFromDeletedOrder = useSelector(
+    ({ ordersReducer }) => ordersReducer.showProductsFromDeletedOrder
+  );
+  const whatArray =
+    modalConfig.modalType === listTypesModal.items
+      ? productsFromOrder
+      : productsFromDeletedOrder;
   let tableArray = [];
-  if (productsFromOrder) {
-    const mappedProductsFromOrder = productsFromOrder.products.map(
+  if (whatArray) {
+    const mappedProductsFromOrder = whatArray.products.map(
       ({
         quantity,
         price,
@@ -60,7 +81,9 @@ const Modal = () => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style}>
+      <Box
+        sx={modalConfig.modalType === listTypesModal.edit ? styleEdit : style}
+      >
         {modalConfig.modalType === listTypesModal.edit ? (
           <ChangeOrder
             row={productsFromOrder}

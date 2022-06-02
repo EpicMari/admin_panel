@@ -19,7 +19,7 @@ const TodayWeekWeather = ({ weekWeather, hourlyWeather, swiperWeather }) => {
   const celsius = "\u0043";
   return (
     <StyledSwiperContainer>
-      <Swiper slidesPerView={"auto"} spaceBetween={30} autoHeight="true">
+      <Swiper slidesPerView={"auto"} spaceBetween={30}>
         {swiperWeather === listTypesWeather.week
           ? weekWeather.map((item) => {
               return (

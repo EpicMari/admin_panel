@@ -29,7 +29,7 @@ const ChangeOrder = ({
   return (
     <>
       <TextField
-        variant="standard"
+        variant="outlined"
         label="Price"
         value={newPrice}
         onChange={handlePrice}
@@ -54,7 +54,7 @@ const ChangeOrder = ({
           label="Status"
           onChange={handleSelect}
           defaultValue={newStatus}
-          variant="standard"
+          variant="outlined"
         >
           <MenuItem value="PENDING">PENDING</MenuItem>
           <MenuItem value="COMPLETED">COMPLETED</MenuItem>

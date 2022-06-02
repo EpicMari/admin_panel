@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledSwiperContainer = styled.div`
   & .swiper {
     overflow: hidden;
+    height: 100%;
     & .swiper-wrapper {
       display: flex;
     }

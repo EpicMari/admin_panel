@@ -1,22 +1,38 @@
-// import { firestore } from "./firebaseConfig";
-import { collection, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { firestore } from "./firebaseConfig";
 
-// export const usersCollection = firestore.collection("adminPanelUsers");
 export const usersCollection = collection(firestore, "adminPanelUsers");
-// export const ordersCollection = firestore.collection("orders");
 export const ordersCollection = collection(firestore, "orders");
+export const deletedOrders = collection(firestore, "deletedOrders");
+
+export const deleteOrderFromFirestore = (ordersToDelete) => {
+  ordersToDelete.forEach((orderId) => {
+    getDoc(doc(ordersCollection, orderId))
+      .then((doc) => {
+        const orderToDelete = doc.data();
+
+        addDoc(deletedOrders, orderToDelete)
+          .then(() => console.log("add order"))
+          .catch((err) => console.log(err));
+      })
+      .then(() => deleteDoc(doc(ordersCollection, orderId)))
+      .catch((err) => console.log(err));
+  });
+};
 
 // export const deleteOrderFromFirestore = (ordersToDelete) => {
 //   ordersToDelete.forEach((orderId) => {
-//     ordersCollection.doc(orderId).delete();
+//     console.log(orderId);
+//     // deleteDoc(doc(ordersCollection, orderId));
 //   });
 // };
-export const deleteOrderFromFirestore = (ordersToDelete) => {
-  ordersToDelete.forEach((orderId) => {
-    deleteDoc(doc(ordersCollection, orderId));
-  });
-};
 
 export const editOrderFromFirestore = (
   orderId,
@@ -30,11 +46,3 @@ export const editOrderFromFirestore = (
     createdAt,
   });
 };
-// export const editOrderFromFirestore = (
-//   orderId,
-//   status,
-//   totalPrice,
-//   createdAt
-// ) => {
-//   ordersCollection.doc(orderId).update({ status, totalPrice, createdAt });
-// };

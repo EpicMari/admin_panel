@@ -1,11 +1,16 @@
 import React, { useEffect } from "react";
 import { ThemeProvider } from "styled-components";
-import { ordersCollection } from "../firebase/firestoreUtils";
+import { deletedOrders, ordersCollection } from "../firebase/firestoreUtils";
 import { GlobalStyle } from "../globalStyle/GlobalStyle";
 import Router from "../routing";
 import { themes } from "../themes/themes";
 import { useDispatch, useSelector } from "react-redux";
-import { setCoordinates, setOrders, setWeatherData } from "../redux/actions";
+import {
+  setCoordinates,
+  setDeletedOrders,
+  setOrders,
+  setWeatherData,
+} from "../redux/actions";
 import AuthProvider from "../providers/AuthProvider";
 import { onSnapshot } from "firebase/firestore";
 import axios from "axios";
@@ -47,6 +52,21 @@ const Root = () => {
         };
       });
       dispatch(setOrders(dataFromOrdersCollection));
+    });
+    return () => {
+      subscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    const subscribe = onSnapshot(deletedOrders, (snapshot) => {
+      const dataFromDeletedOrders = snapshot.docs.map((doc) => {
+        return {
+          docId: doc.id,
+          ...doc.data(),
+        };
+      });
+      dispatch(setDeletedOrders(dataFromDeletedOrders));
     });
     return () => {
       subscribe();

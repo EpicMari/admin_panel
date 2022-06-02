@@ -2,7 +2,7 @@ export const ordersHeadCells = [
   {
     id: "docId",
     numberic: false,
-    disablePadding: true,
+    disablePadding: false,
     label: "ID",
   },
   {

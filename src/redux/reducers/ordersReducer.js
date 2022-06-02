@@ -4,6 +4,8 @@ const initialState = {
   orders: [],
   selected: [],
   showProductsFromOrder: null,
+  deletedOrders: [],
+  showProductsFromDeletedOrder: null,
 };
 
 const ordersReducer = (state = initialState, action) => {
@@ -31,6 +33,18 @@ const ordersReducer = (state = initialState, action) => {
       return {
         ...state,
         orders: state.orders.filter((order) => !payload.includes(order.docId)),
+      };
+    case actionsTypes.SET_DELETED_ORDERS:
+      return {
+        ...state,
+        deletedOrders: payload,
+      };
+    case actionsTypes.SHOW_PRODUCTS_FROM_DELETED_ORDER:
+      return {
+        ...state,
+        showProductsFromDeletedOrder: state.deletedOrders.find((order) =>
+          payload.includes(order.docId)
+        ),
       };
     default:
       return state;

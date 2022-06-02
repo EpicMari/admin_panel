@@ -92,6 +92,7 @@ const EnhancedTable = ({
         <EnhancedTableToolbar
           numSelected={selected}
           clearSelectedOrders={clearSelectedOrders}
+          listTypes={listTypes}
         />
         <TableContainer>
           <Table
@@ -150,7 +151,7 @@ const EnhancedTable = ({
                                       component="th"
                                       id={labelId}
                                       scope="row"
-                                      padding="none"
+                                      padding="normal"
                                     >
                                       ID
                                     </TableCell>
@@ -173,11 +174,9 @@ const EnhancedTable = ({
                                 );
                               }
                               return (
-                                <>
-                                  <TableCell key={index} align="left">
-                                    {value}
-                                  </TableCell>
-                                </>
+                                <TableCell key={index} align="left">
+                                  {value}
+                                </TableCell>
                               );
                             })}
                             <TableCell align="left">
@@ -190,6 +189,46 @@ const EnhancedTable = ({
                                 <EditIcon />
                               </IconButton>
                             </TableCell>
+                          </>
+                        ) : listTypes === listTypesTable.deletedOrders ? (
+                          <>
+                            {Object.values(order).map((value, index) => {
+                              if (index === 0) {
+                                return (
+                                  <Tooltip title={order.id}>
+                                    <TableCell
+                                      component="th"
+                                      id={labelId}
+                                      scope="row"
+                                      padding="normal"
+                                      align="none"
+                                    >
+                                      ID
+                                    </TableCell>
+                                  </Tooltip>
+                                );
+                              }
+                              if (index === 2) {
+                                return (
+                                  <TableCell align="left">
+                                    <IconButton
+                                      onClick={() => {
+                                        showProductsFromOrder(order.id);
+                                        openModal();
+                                      }}
+                                    >
+                                      <VisibilityIcon />
+                                    </IconButton>
+                                    {value}
+                                  </TableCell>
+                                );
+                              }
+                              return (
+                                <TableCell key={index} align="left">
+                                  {value}
+                                </TableCell>
+                              );
+                            })}
                           </>
                         ) : (
                           <>
@@ -210,11 +249,9 @@ const EnhancedTable = ({
                                 );
                               }
                               return (
-                                <>
-                                  <TableCell key={index} align="left">
-                                    {value}
-                                  </TableCell>
-                                </>
+                                <TableCell key={index} align="left">
+                                  {value}
+                                </TableCell>
                               );
                             })}
                           </>
