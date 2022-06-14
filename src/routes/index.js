@@ -3,7 +3,6 @@ export const routes = {
   orders: "/orders",
   messages: "/messages",
   trash: "/trash",
-  settings: "/settings",
   login: "/login",
   register: "/register",
 };

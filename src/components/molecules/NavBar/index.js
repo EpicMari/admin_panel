@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { routes } from "../../../routes";
 import HomeIcon from "@mui/icons-material/Home";
-import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import EmailIcon from "@mui/icons-material/Email";
 import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
@@ -54,12 +53,6 @@ const NavBar = () => {
       </StyledFirstNav>
       <StyledSecondNav>
         <StyledList>
-          <StyledListItem key={routes.settings}>
-            <StyledNavLink to={routes.settings}>
-              <SettingsIcon />
-              <StyledSpan>Settings</StyledSpan>
-            </StyledNavLink>
-          </StyledListItem>
           <StyledListItem>
             <StyledButton onClick={signOut}>
               <LogoutIcon />

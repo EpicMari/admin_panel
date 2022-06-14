@@ -53,3 +53,23 @@ export const showProductsFromDeletedOrder = (orderId) => ({
   type: actionsTypes.SHOW_PRODUCTS_FROM_DELETED_ORDER,
   payload: orderId,
 });
+
+export const setGoogleAcc = (acc) => ({
+  type: actionsTypes.SET_GOOGLE_ACC,
+  payload: acc,
+});
+
+export const setMessages = (messages) => ({
+  type: actionsTypes.SET_MESSAGES,
+  payload: messages,
+});
+
+export const setUndeadQuantity = (unread) => ({
+  type: actionsTypes.SET_UNREAD_QUANTITY,
+  payload: unread,
+});
+
+export const setMessagesLabel = (label) => ({
+  type: actionsTypes.SET_MESSAGES_LABEL,
+  payload: label,
+});

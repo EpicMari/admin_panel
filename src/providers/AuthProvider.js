@@ -12,7 +12,7 @@ import { setUser } from "../redux/actions";
 
 const AuthProvider = ({ children }) => {
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.userReducer.currentUser);
+  const currentUser = useSelector(({ userReducer }) => userReducer.currentUser);
 
   const createAcc = (email, password, firstName, lastName) => {
     dispatch(setUser(null));
@@ -49,7 +49,6 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const verificationUser = auth.onAuthStateChanged((user) => {
       if (user) {
-        // const userByUid = usersCollection.doc(user.uid);
         const userByUid = getDoc(doc(usersCollection, user.uid));
         userByUid.then((doc) => {
           if (doc.exists) {
@@ -59,6 +58,7 @@ const AuthProvider = ({ children }) => {
               email: userData.email,
               firstName: userData.firstName,
               lastName: userData.lastName,
+              adminKey: userData.adminKey,
             };
             dispatch(setUser(userAcc));
           }
@@ -69,29 +69,6 @@ const AuthProvider = ({ children }) => {
     });
     return verificationUser;
   }, []);
-
-  // useEffect(() => {
-  //   const verificationUser = auth.onAuthStateChanged((user) => {
-  //     if (user) {
-  // const userByUid = usersCollection.doc(user.uid);
-  //       userByUid.get().then((doc) => {
-  //         if (doc.exists) {
-  //           const userData = doc.data();
-  //           const userAcc = {
-  //             id: user.uid,
-  //             email: userData.email,
-  //             firstName: userData.firstName,
-  //             lastName: userData.lastName,
-  //           };
-  //           dispatch(setUser(userAcc));
-  //         }
-  //       });
-  //     } else {
-  //       dispatch(setUser("signedout"));
-  //     }
-  //   });
-  //   return verificationUser;
-  // }, []);
 
   return (
     <AuthContext.Provider value={{ signIn, signOut, createAcc, currentUser }}>

@@ -4,6 +4,9 @@ const initialState = {
   modalConfig: { isModalOpen: false, modalType: "" },
   coordinates: { lat: 50.25, lot: 19 },
   weatherData: null,
+  messages: [],
+  unreadQuantity: 0,
+  messagesLabel: "INBOX",
 };
 
 const utilsReducer = (state = initialState, action) => {
@@ -37,6 +40,21 @@ const utilsReducer = (state = initialState, action) => {
       return {
         ...state,
         weatherData: payload,
+      };
+    case actionsTypes.SET_MESSAGES:
+      return {
+        ...state,
+        messages: payload,
+      };
+    case actionsTypes.SET_UNREAD_QUANTITY:
+      return {
+        ...state,
+        unreadQuantity: payload,
+      };
+    case actionsTypes.SET_MESSAGES_LABEL:
+      return {
+        ...state,
+        messagesLabel: payload,
       };
     default:
       return state;
