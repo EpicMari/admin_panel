@@ -13,6 +13,7 @@ import {
   StyledWeatherCard,
   StyledWeatherImg,
 } from "./StyledTodayWeekWeather";
+import { v4 as uuidv4 } from "uuid";
 
 const TodayWeekWeather = ({ weekWeather, hourlyWeather, swiperWeather }) => {
   const degree = "\u00B0";
@@ -23,7 +24,7 @@ const TodayWeekWeather = ({ weekWeather, hourlyWeather, swiperWeather }) => {
         {swiperWeather === listTypesWeather.week
           ? weekWeather.map((item) => {
               return (
-                <SwiperSlide>
+                <SwiperSlide key={uuidv4()}>
                   <StyledWeatherCard>
                     <Paragraph color="grey" size="l">
                       {dayConventer(item.dt)}
@@ -48,7 +49,7 @@ const TodayWeekWeather = ({ weekWeather, hourlyWeather, swiperWeather }) => {
             })
           : hourlyWeather.map((item) => {
               return (
-                <SwiperSlide>
+                <SwiperSlide key={uuidv4()}>
                   <StyledWeatherCard>
                     <Paragraph color="grey" size="l">
                       {sunriseSunset(item.dt)}

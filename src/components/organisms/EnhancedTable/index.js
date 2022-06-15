@@ -16,6 +16,7 @@ import { getComparator, stableSort } from "./utils";
 import EnhancedTableHead from "./EnhancedTableHead";
 import EnhancedTableToolbar from "./EnhancedTableToolbar";
 import { listTypesTable } from "../../../utils/listTypes";
+import { v4 as uuidv4 } from "uuid";
 
 const EnhancedTable = ({
   headCells,
@@ -111,8 +112,6 @@ const EnhancedTable = ({
               listTypes={listTypes}
             />
             <TableBody>
-              {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-                   rows.slice().sort(getComparator(order, orderBy)) */}
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((order, index) => {
@@ -120,144 +119,140 @@ const EnhancedTable = ({
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
-                    <>
-                      <TableRow
-                        hover
-                        role="checkbox"
-                        aria-checked={isItemSelected}
-                        tabIndex={-1}
-                        key={order.name}
-                        selected={isItemSelected}
-                      >
-                        {listTypes === listTypesTable.orders ? (
-                          <>
-                            <TableCell padding="checkbox">
-                              <Checkbox
-                                color="primary"
-                                onChange={(event) =>
-                                  handleClick(event, order.id)
-                                }
-                                checked={isItemSelected}
-                                inputProps={{
-                                  "aria-labelledby": labelId,
-                                }}
-                              />
-                            </TableCell>
-                            {Object.values(order).map((value, index) => {
-                              if (index === 0) {
-                                return (
-                                  <Tooltip title={order.id}>
-                                    <TableCell
-                                      component="th"
-                                      id={labelId}
-                                      scope="row"
-                                      padding="normal"
-                                    >
-                                      ID
-                                    </TableCell>
-                                  </Tooltip>
-                                );
-                              }
-                              if (index === 2) {
-                                return (
-                                  <TableCell align="left">
-                                    <IconButton
-                                      onClick={() => {
-                                        showProductsFromOrder(order.id);
-                                        openModal();
-                                      }}
-                                    >
-                                      <VisibilityIcon />
-                                    </IconButton>
-                                    {value}
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      aria-checked={isItemSelected}
+                      tabIndex={-1}
+                      key={order.id}
+                      selected={isItemSelected}
+                    >
+                      {listTypes === listTypesTable.orders ? (
+                        <>
+                          <TableCell padding="checkbox">
+                            <Checkbox
+                              color="primary"
+                              onChange={(event) => handleClick(event, order.id)}
+                              checked={isItemSelected}
+                              inputProps={{
+                                "aria-labelledby": labelId,
+                              }}
+                            />
+                          </TableCell>
+                          {Object.values(order).map((value, index) => {
+                            if (index === 0) {
+                              return (
+                                <Tooltip title={order.id} key={index}>
+                                  <TableCell
+                                    component="th"
+                                    id={labelId}
+                                    scope="row"
+                                    padding="normal"
+                                  >
+                                    ID
                                   </TableCell>
-                                );
-                              }
+                                </Tooltip>
+                              );
+                            }
+                            if (index === 2) {
                               return (
-                                <TableCell key={index} align="left">
+                                <TableCell align="left" key={index}>
+                                  <IconButton
+                                    onClick={() => {
+                                      showProductsFromOrder(order.id);
+                                      openModal();
+                                    }}
+                                  >
+                                    <VisibilityIcon />
+                                  </IconButton>
                                   {value}
                                 </TableCell>
                               );
-                            })}
-                            <TableCell align="left">
-                              <IconButton
-                                onClick={() => {
-                                  openModalEdit();
-                                  showProductsFromOrder(order.id);
-                                }}
-                              >
-                                <EditIcon />
-                              </IconButton>
-                            </TableCell>
-                          </>
-                        ) : listTypes === listTypesTable.deletedOrders ? (
-                          <>
-                            {Object.values(order).map((value, index) => {
-                              if (index === 0) {
-                                return (
-                                  <Tooltip title={order.id}>
-                                    <TableCell
-                                      component="th"
-                                      id={labelId}
-                                      scope="row"
-                                      padding="normal"
-                                      align="none"
-                                    >
-                                      ID
-                                    </TableCell>
-                                  </Tooltip>
-                                );
-                              }
-                              if (index === 2) {
-                                return (
-                                  <TableCell align="left">
-                                    <IconButton
-                                      onClick={() => {
-                                        showProductsFromOrder(order.id);
-                                        openModal();
-                                      }}
-                                    >
-                                      <VisibilityIcon />
-                                    </IconButton>
-                                    {value}
+                            }
+                            return (
+                              <TableCell align="left" key={index}>
+                                {value}
+                              </TableCell>
+                            );
+                          })}
+                          <TableCell align="left">
+                            <IconButton
+                              onClick={() => {
+                                openModalEdit();
+                                showProductsFromOrder(order.id);
+                              }}
+                            >
+                              <EditIcon />
+                            </IconButton>
+                          </TableCell>
+                        </>
+                      ) : listTypes === listTypesTable.deletedOrders ? (
+                        <>
+                          {Object.values(order).map((value, index) => {
+                            if (index === 0) {
+                              return (
+                                <Tooltip title={order.id} key={index}>
+                                  <TableCell
+                                    component="th"
+                                    id={labelId}
+                                    scope="row"
+                                    padding="normal"
+                                    align="inherit"
+                                  >
+                                    ID
                                   </TableCell>
-                                );
-                              }
+                                </Tooltip>
+                              );
+                            }
+                            if (index === 2) {
                               return (
-                                <TableCell key={index} align="left">
+                                <TableCell align="left" key={index}>
+                                  <IconButton
+                                    onClick={() => {
+                                      showProductsFromOrder(order.id);
+                                      openModal();
+                                    }}
+                                  >
+                                    <VisibilityIcon />
+                                  </IconButton>
                                   {value}
                                 </TableCell>
                               );
-                            })}
-                          </>
-                        ) : (
-                          <>
-                            {Object.values(order).map((value, index) => {
-                              if (index === 0) {
-                                return (
-                                  <Tooltip title={order.id}>
-                                    <TableCell
-                                      component="th"
-                                      id={labelId}
-                                      scope="row"
-                                      padding="normal"
-                                      align="none"
-                                    >
-                                      ID
-                                    </TableCell>
-                                  </Tooltip>
-                                );
-                              }
+                            }
+                            return (
+                              <TableCell align="left" key={index}>
+                                {value}
+                              </TableCell>
+                            );
+                          })}
+                        </>
+                      ) : (
+                        <>
+                          {Object.values(order).map((value, index) => {
+                            if (index === 0) {
                               return (
-                                <TableCell key={index} align="left">
-                                  {value}
-                                </TableCell>
+                                <Tooltip title={order.id} key={index}>
+                                  <TableCell
+                                    component="th"
+                                    id={labelId}
+                                    scope="row"
+                                    padding="normal"
+                                    align="inherit"
+                                  >
+                                    ID
+                                  </TableCell>
+                                </Tooltip>
                               );
-                            })}
-                          </>
-                        )}
-                      </TableRow>
-                    </>
+                            }
+                            return (
+                              <TableCell align="left" key={index}>
+                                {value}
+                              </TableCell>
+                            );
+                          })}
+                        </>
+                      )}
+                    </TableRow>
                   );
                 })}
               {emptyRows > 0 && (

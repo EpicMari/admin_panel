@@ -77,7 +77,9 @@ const RegisterForm = () => {
         )}
       </Formik>
       <StyledLogInBox>
-        <Paragraph size="l">Already have account?</Paragraph>
+        <Paragraph size="l" color="grey">
+          Already have account?
+        </Paragraph>
         <Button
           color="primary"
           variant="outlined"

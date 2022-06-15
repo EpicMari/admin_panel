@@ -17,7 +17,6 @@ const Email = ({ messages }) => {
       setPagination((prev) => prev + messagessByPage);
     }
   };
-  console.log(messages);
   return messages?.length === 0 ? (
     <Spinner />
   ) : (

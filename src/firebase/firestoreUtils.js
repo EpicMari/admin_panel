@@ -27,13 +27,6 @@ export const deleteOrderFromFirestore = (ordersToDelete) => {
   });
 };
 
-// export const deleteOrderFromFirestore = (ordersToDelete) => {
-//   ordersToDelete.forEach((orderId) => {
-//     console.log(orderId);
-//     // deleteDoc(doc(ordersCollection, orderId));
-//   });
-// };
-
 export const editOrderFromFirestore = (
   orderId,
   status,

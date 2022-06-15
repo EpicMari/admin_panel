@@ -9,6 +9,7 @@ const EmailContainer = ({ messages, pagination, messagessByPage }) => {
         ({ messagesArr, id, subject, date, from, isChecked }, index) =>
           index >= pagination - messagessByPage && index < pagination ? (
             <SingleEmail
+              key={id}
               from={from}
               subject={subject}
               date={date}

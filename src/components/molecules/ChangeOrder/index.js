@@ -17,7 +17,7 @@ const ChangeOrder = ({
   const [newData, setNewData] = useState(createdAt);
   const [newStatus, setNewStatus] = useState(status);
   const [newPrice, setNewPrice] = useState(totalPrice);
-  console.log(docId);
+
   const handlePrice = (e) => {
     setNewPrice(e.target.value);
   };

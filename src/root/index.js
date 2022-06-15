@@ -14,19 +14,13 @@ import {
 import AuthProvider from "../providers/AuthProvider";
 import { onSnapshot } from "firebase/firestore";
 import axios from "axios";
-import {
-  countUnreadThreads,
-  fetchEmails,
-  formatThreads,
-  mountScripts,
-} from "../google";
+import { mountScripts } from "../google";
 
 const Root = () => {
   const dispatch = useDispatch();
   const weatherCords = useSelector(
     ({ utilsReducer }) => utilsReducer.coordinates
   );
-  const googleAcc = useSelector(({ userReducer }) => userReducer.googleAcc);
 
   useEffect(() => {
     mountScripts();
@@ -83,19 +77,6 @@ const Root = () => {
       subscribe();
     };
   }, []);
-
-  // useEffect(() => {
-  //   if (googleAcc) {
-  //     fetchEmails()
-  //       .then((emails) => {
-  //         const unreadThreadsQuantity = countUnreadThreads(emails);
-  //         const formattedThreads = formatThreads(emails);
-  //         console.log(unreadThreadsQuantity);
-  //         console.log(formattedThreads);
-  //       })
-  //       .catch((err) => console.log(err));
-  //   }
-  // }, [googleAcc]);
 
   return (
     <AuthProvider>

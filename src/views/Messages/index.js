@@ -45,10 +45,8 @@ const Messages = () => {
       };
 
       dispatch(setGoogleAcc(userData));
-      console.log("gapi: user signed in!");
     } else {
       dispatch(setGoogleAcc(null));
-      console.log("gapi: user signed out");
     }
   };
 
@@ -62,13 +60,12 @@ const Messages = () => {
             "https://mail.google.com/ https://www.googleapis.com/auth/gmail.compose https://www.googleapis.com/auth/gmail.modify https://www.googleapis.com/auth/gmail.readonly",
         })
         .then(
-          function (res) {
-            console.log("Sign-in successful", res);
+          (res) => {
             const auth2 = gapi.auth2.getAuthInstance();
             auth2.isSignedIn.listen(updateSignIn);
             updateSignIn(auth2.isSignedIn.get());
           },
-          function (err) {
+          (err) => {
             console.error("Error signing in", err);
           }
         )
@@ -81,8 +78,7 @@ const Messages = () => {
       gapi.client
         .load("https://gmail.googleapis.com/$discovery/rest?version=v1")
         .then(
-          function () {
-            console.log("GAPI client loaded for API");
+          () => {
             fetchEmails()
               .then((emails) => {
                 const unreadThreadsQuantity = countUnreadThreads(emails);
@@ -92,7 +88,7 @@ const Messages = () => {
               })
               .catch((err) => console.log(err));
           },
-          function (err) {
+          (err) => {
             console.error("Error loading GAPI client for API", err);
           }
         )
@@ -107,11 +103,10 @@ const Messages = () => {
           userId: "me",
         })
         .then(
-          function (response) {
-            console.log("Response", response.result);
+          (res) => {
             dispatch(setGoogleAcc(null));
           },
-          function (err) {
+          (err) => {
             console.error("Execute error", err);
           }
         )

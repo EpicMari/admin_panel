@@ -18,7 +18,6 @@ const AuthProvider = ({ children }) => {
     dispatch(setUser(null));
     createUserWithEmailAndPassword(auth, email, password)
       .then((item) => {
-        console.log(item);
         usersCollection
           .doc(item.user.uid)
           .set({

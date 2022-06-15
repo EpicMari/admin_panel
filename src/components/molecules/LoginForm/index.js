@@ -50,7 +50,9 @@ const LoginForm = () => {
         )}
       </Formik>
       <StyledSignUpBox>
-        <Paragraph size="l">Don't have account?</Paragraph>
+        <Paragraph size="l" color="grey">
+          Don't have account?
+        </Paragraph>
         <Button
           color="primary"
           variant="outlined"
