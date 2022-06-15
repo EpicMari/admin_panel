@@ -5,7 +5,7 @@ import { StyledWrapper } from "./StyledEmailContainer";
 const EmailContainer = ({ messages, pagination, messagessByPage }) => {
   return (
     <StyledWrapper>
-      {messages.map(
+      {messages?.map(
         ({ messagesArr, id, subject, date, from, isChecked }, index) =>
           index >= pagination - messagessByPage && index < pagination ? (
             <SingleEmail

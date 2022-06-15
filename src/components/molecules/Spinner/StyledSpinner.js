@@ -1,6 +1,12 @@
 import styled from "styled-components";
-
 export const StyledWrapper = styled.div`
+  display: grid;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+`;
+
+export const StyledLoadingSpinner = styled.div`
   @keyframes spin {
     to {
       transform: rotate(360deg);

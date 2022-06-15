@@ -1,8 +1,12 @@
 import React from "react";
-import { StyledWrapper } from "./StyledSpinner";
+import { StyledLoadingSpinner, StyledWrapper } from "./StyledSpinner";
 
 const Spinner = () => {
-  return <StyledWrapper></StyledWrapper>;
+  return (
+    <StyledWrapper>
+      <StyledLoadingSpinner></StyledLoadingSpinner>
+    </StyledWrapper>
+  );
 };
 
 export default Spinner;

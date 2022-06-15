@@ -3,6 +3,7 @@ import Pagination from "../../molecules/Pagination";
 import EmailContainer from "./EmailContainer";
 import LabelEmail from "./LabelEmail";
 import { StyledContainer } from "./StyledEmail";
+import Spinner from "../../molecules/Spinner";
 
 const messagessByPage = 20;
 
@@ -16,16 +17,17 @@ const Email = ({ messages }) => {
       setPagination((prev) => prev + messagessByPage);
     }
   };
-  return (
+  console.log(messages);
+  return messages?.length === 0 ? (
+    <Spinner />
+  ) : (
     <StyledContainer>
       <LabelEmail />
-      {messages && (
-        <EmailContainer
-          messages={messages}
-          pagination={pagination}
-          messagessByPage={messagessByPage}
-        />
-      )}
+      <EmailContainer
+        messages={messages}
+        pagination={pagination}
+        messagessByPage={messagessByPage}
+      />
       <Pagination handlePagination={handlePagination} pagination={pagination} />
     </StyledContainer>
   );

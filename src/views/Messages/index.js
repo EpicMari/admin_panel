@@ -11,7 +11,6 @@ import {
 } from "../../redux/actions";
 import GoogleIcon from "@mui/icons-material/Google";
 import LoginIcon from "@mui/icons-material/Login";
-import Spinner from "../../components/molecules/Spinner";
 
 const Messages = () => {
   const gapi = window.gapi;
