@@ -10,10 +10,8 @@ const Pagination = ({ handlePagination, pagination }) => {
       <IconButton onClick={() => handlePagination("left")}>
         <ArrowBackIosOutlinedIcon />
       </IconButton>
-      <IconButton>
-        <ArrowForwardIosOutlinedIcon
-          onClick={() => handlePagination("right")}
-        />
+      <IconButton onClick={() => handlePagination("right")}>
+        <ArrowForwardIosOutlinedIcon />
       </IconButton>
       <span>{`${pagination - 19} - ${pagination}`}</span>
     </StyledWrapper>

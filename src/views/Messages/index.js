@@ -115,8 +115,7 @@ const Messages = () => {
   gapi &&
     gapi.load("client:auth2", function () {
       gapi.auth2.init({
-        client_id:
-          "306948061209-fagh97mi6lse8sd2jbfa59d1hp32vpoh.apps.googleusercontent.com",
+        client_id: `${process.env.REACT_APP_GOOGLE_CLIENT_ID}`,
       });
     });
 
