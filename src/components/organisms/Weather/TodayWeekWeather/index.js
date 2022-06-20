@@ -30,7 +30,7 @@ const TodayWeekWeather = ({ weekWeather, hourlyWeather, swiperWeather }) => {
                       {dayConventer(item.dt)}
                     </Paragraph>
                     <StyledWeatherImg
-                      src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
+                      src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
                     />
                     <StyledBoxTemperature>
                       <StyledSpanTemperature>
@@ -55,7 +55,7 @@ const TodayWeekWeather = ({ weekWeather, hourlyWeather, swiperWeather }) => {
                       {sunriseSunset(item.dt)}
                     </Paragraph>
                     <StyledWeatherImg
-                      src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
+                      src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
                     />
                     <StyledBoxTemperature>
                       <StyledSpanTemperature>

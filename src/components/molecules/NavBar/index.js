@@ -16,7 +16,7 @@ import {
   StyledSpan,
   StyledWrapper,
 } from "./StyledNavBar";
-import AuthContext from "../../../context";
+import { AuthContext } from "../../../context";
 
 const NavBar = () => {
   const { signOut } = useContext(AuthContext);

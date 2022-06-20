@@ -5,7 +5,7 @@ import {
 import { doc, getDoc } from "firebase/firestore";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AuthContext from "../context";
+import { AuthContext } from "../context";
 import { auth } from "../firebase/firebaseConfig";
 import { usersCollection } from "../firebase/firestoreUtils";
 import { setUser } from "../redux/actions";

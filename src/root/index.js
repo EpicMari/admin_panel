@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { ThemeProvider } from "styled-components";
 import { deletedOrders, ordersCollection } from "../firebase/firestoreUtils";
 import { GlobalStyle } from "../globalStyle/GlobalStyle";
@@ -11,20 +11,21 @@ import {
   setOrders,
   setWeatherData,
 } from "../redux/actions";
-import AuthProvider from "../providers/AuthProvider";
 import { onSnapshot } from "firebase/firestore";
 import axios from "axios";
-import { mountScripts } from "../google";
+import { GoogleContext } from "../context";
 
 const Root = () => {
   const dispatch = useDispatch();
   const weatherCords = useSelector(
     ({ utilsReducer }) => utilsReducer.coordinates
   );
+  const { gisLoaded, gapiLoaded } = useContext(GoogleContext);
 
   useEffect(() => {
-    mountScripts();
-  }, []);
+    gapiLoaded();
+    gisLoaded();
+  }, [gisLoaded, gapiLoaded]);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -79,12 +80,10 @@ const Root = () => {
   }, []);
 
   return (
-    <AuthProvider>
-      <ThemeProvider theme={themes}>
-        <GlobalStyle />
-        <Router />
-      </ThemeProvider>
-    </AuthProvider>
+    <ThemeProvider theme={themes}>
+      <GlobalStyle />
+      <Router />
+    </ThemeProvider>
   );
 };
 

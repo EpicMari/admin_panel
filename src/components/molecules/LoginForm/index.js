@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import { routes } from "../../../routes";
 import { Formik, Form } from "formik";
 import { loginFormSchema } from "../../../utils/validationSchema";
-import AuthContext from "../../../context";
+import { AuthContext } from "../../../context";
 import { Button } from "@mui/material";
 import Paragraph from "../../atoms/Paragraph";
 import { useHistory } from "react-router-dom";

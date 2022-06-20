@@ -1,20 +1,15 @@
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Email from "../../components/organisms/Email";
 import { StyledWrapper } from "./StyledMessages";
-import { countUnreadThreads, fetchEmails, formatThreads } from "../../google";
-import {
-  setGoogleAcc,
-  setMessages,
-  setUndeadQuantity,
-} from "../../redux/actions";
 import GoogleIcon from "@mui/icons-material/Google";
 import LoginIcon from "@mui/icons-material/Login";
+import { useContext } from "react";
+import { GoogleContext } from "../../context";
 
 const Messages = () => {
-  const gapi = window.gapi;
-  const dispatch = useDispatch();
+  const { handleSignoutClick, handleAuthClick } = useContext(GoogleContext);
 
   const [messagesToView, setMessagesToView] = useState(null);
 
@@ -25,121 +20,36 @@ const Messages = () => {
   );
 
   useEffect(() => {
-    const getMessages = (label) =>
+    const getMessages = (label = "INBOX") =>
       messages.filter((message) =>
         message.messagesArr[0].labelIds.includes(label)
       );
     setMessagesToView(getMessages(messagesLabel));
   }, [messagesLabel, messages]);
 
-  const updateSignIn = (isSignIn) => {
-    if (isSignIn) {
-      const auth2 = gapi.auth2.getAuthInstance();
-      const user = auth2.currentUser.get();
-      const profile = user.getBasicProfile();
-
-      const userData = {
-        id: profile.getId(),
-        name: profile.getName(),
-        email: profile.getEmail(),
-      };
-
-      dispatch(setGoogleAcc(userData));
-    } else {
-      dispatch(setGoogleAcc(null));
-    }
-  };
-
-  const authenticate = () => {
-    return (
-      gapi &&
-      gapi.auth2
-        .getAuthInstance()
-        .signIn({
-          scope:
-            "https://mail.google.com/ https://www.googleapis.com/auth/gmail.compose https://www.googleapis.com/auth/gmail.modify https://www.googleapis.com/auth/gmail.readonly",
-        })
-        .then(
-          (res) => {
-            const auth2 = gapi.auth2.getAuthInstance();
-            auth2.isSignedIn.listen(updateSignIn);
-            updateSignIn(auth2.isSignedIn.get());
-          },
-          (err) => {
-            console.error("Error signing in", err);
-          }
-        )
-    );
-  };
-  const loadClient = () => {
-    gapi.client.setApiKey(`${process.env.REACT_APP_FIREBASE_API_KEY}`);
-    return (
-      gapi &&
-      gapi.client
-        .load("https://gmail.googleapis.com/$discovery/rest?version=v1")
-        .then(
-          () => {
-            fetchEmails()
-              .then((emails) => {
-                const unreadThreadsQuantity = countUnreadThreads(emails);
-                const formattedThreads = formatThreads(emails);
-                dispatch(setMessages(formattedThreads));
-                dispatch(setUndeadQuantity(unreadThreadsQuantity));
-              })
-              .catch((err) => console.log(err));
-          },
-          (err) => {
-            console.error("Error loading GAPI client for API", err);
-          }
-        )
-    );
-  };
-
-  const execute = () => {
-    return (
-      gapi &&
-      gapi.client.gmail.users
-        .getProfile({
-          userId: "me",
-        })
-        .then(
-          (res) => {
-            dispatch(setGoogleAcc(null));
-          },
-          (err) => {
-            console.error("Execute error", err);
-          }
-        )
-    );
-  };
-  gapi &&
-    gapi.load("client:auth2", function () {
-      gapi.auth2.init({
-        client_id: `${process.env.REACT_APP_GOOGLE_CLIENT_ID}`,
-      });
-    });
-
   return (
     <StyledWrapper>
       {!googleAcc && (
         <Button
+          id="authorize_button"
           variant="contained"
-          onClick={() => authenticate().then(loadClient)}
           endIcon={<GoogleIcon />}
+          onClick={() => handleAuthClick()}
         >
-          LOG IN
+          Authorize
         </Button>
       )}
       {googleAcc && (
         <Button
+          id="signout_button"
           variant="contained"
-          onClick={() => execute()}
           endIcon={<LoginIcon />}
+          onClick={() => handleSignoutClick()}
         >
-          LOG OUT
+          Sign Out
         </Button>
       )}
-      <Email messages={messagesToView} />
+      <Email messages={messagesToView} googleAcc={googleAcc} />
     </StyledWrapper>
   );
 };

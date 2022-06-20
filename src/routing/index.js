@@ -4,7 +4,7 @@ import { routes } from "../routes";
 import Dashboard from "../views/Dashboard";
 import Messages from "../views/Messages";
 import LoggedRoute from "./LoggedRoute";
-import AuthContext from "../context";
+import { AuthContext } from "../context";
 import Login from "../views/Login";
 import Register from "../views/Register";
 import Orders from "../views/Orders";

@@ -4,7 +4,7 @@ import Paragraph from "../../atoms/Paragraph";
 import { routes } from "../../../routes";
 import { Form, Formik } from "formik";
 import { registerFormSchema } from "../../../utils/validationSchema";
-import AuthContext from "../../../context";
+import { AuthContext } from "../../../context";
 import { Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { StyledLogInBox } from "./StyledRegisterForm";

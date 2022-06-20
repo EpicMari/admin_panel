@@ -7,7 +7,7 @@ import Spinner from "../../molecules/Spinner";
 
 const messagessByPage = 20;
 
-const Email = ({ messages }) => {
+const Email = ({ messages, googleAcc }) => {
   const [pagination, setPagination] = useState(messagessByPage);
 
   const handlePagination = (direction) => {
@@ -17,7 +17,7 @@ const Email = ({ messages }) => {
       setPagination((prev) => prev + messagessByPage);
     }
   };
-  return messages?.length === 0 ? (
+  return googleAcc === null ? (
     <Spinner />
   ) : (
     <StyledContainer>
