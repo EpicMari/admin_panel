@@ -1,19 +1,15 @@
-import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
-import AdapterDateFns from "@date-io/date-fns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DatePicker from "@mui/lab/DatePicker";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import { Button } from "@mui/material";
+import React, { useState } from 'react';
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@date-io/date-fns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { Button } from '@mui/material';
 
-const ChangeOrder = ({
-  row: { status, totalPrice, createdAt, docId },
-  closeModal,
-  editOrder,
-}) => {
+const ChangeOrder = ({ row: { status, totalPrice, createdAt, docId }, closeModal, editOrder }) => {
   const [newData, setNewData] = useState(createdAt);
   const [newStatus, setNewStatus] = useState(status);
   const [newPrice, setNewPrice] = useState(totalPrice);

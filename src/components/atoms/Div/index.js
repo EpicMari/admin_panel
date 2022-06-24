@@ -1,5 +1,5 @@
-import React from "react";
-import { StyledDiv } from "./StyledDiv";
+import React from 'react';
+import { StyledDiv } from './StyledDiv';
 
 const Div = ({ children, background, form }) => {
   return (

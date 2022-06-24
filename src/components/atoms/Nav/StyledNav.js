@@ -1,3 +1,3 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 export const StyledNav = styled.nav``;

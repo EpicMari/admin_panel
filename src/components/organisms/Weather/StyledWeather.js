@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.lightBlue};
@@ -40,8 +40,8 @@ export const StyledBoxIcon = styled.div`
   & > svg {
     width: 40px;
     height: 40px;
-    filter: invert(100%) sepia(0%) saturate(7482%) hue-rotate(302deg)
-      brightness(100%) contrast(106%);
+    filter: invert(100%) sepia(0%) saturate(7482%) hue-rotate(302deg) brightness(100%)
+      contrast(106%);
   }
   .cls-1,
   .cls-2,

@@ -1,21 +1,20 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledParagraph = styled.p`
   font-size: ${({ size, theme }) =>
-    size === "m"
+    size === 'm'
       ? theme.fontSize.m
-      : size === "l"
+      : size === 'l'
       ? theme.fontSize.l
-      : size === "xl"
+      : size === 'xl'
       ? theme.fontSize.xl
-      : size === "xxl"
+      : size === 'xxl'
       ? theme.fontSize.xxl
       : theme.fontSize.s};
 
   text-align: ${({ align }) =>
-    align === "left" ? "left" : align === "right" ? "right" : "center"};
-  color: ${({ color, theme }) =>
-    color === "grey" ? theme.colors.grey : theme.colors.white};
+    align === 'left' ? 'left' : align === 'right' ? 'right' : 'center'};
+  color: ${({ color, theme }) => (color === 'grey' ? theme.colors.grey : theme.colors.white)};
 
-  font-weight: ${({ bold }) => (bold === "700" ? "700" : "400")};
+  font-weight: ${({ bold }) => (bold === '700' ? '700' : '400')};
 `;

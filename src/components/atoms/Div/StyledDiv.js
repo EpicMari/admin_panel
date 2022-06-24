@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import polygon from "../../../assets/mainLayout/polygon.svg";
+import styled, { css } from 'styled-components';
+import polygon from '../../../assets/mainLayout/polygon.svg';
 
 export const StyledDiv = styled.div`
   ${({ background }) =>
@@ -22,8 +22,7 @@ export const StyledDiv = styled.div`
       height: fit-content;
       width: fit-content;
       justify-self: flex-start;
-      box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
-        rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
         rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
       & form {
         display: flex;

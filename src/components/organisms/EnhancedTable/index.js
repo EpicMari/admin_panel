@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import TableContainer from "@mui/material/TableContainer";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
-import Checkbox from "@mui/material/Checkbox";
-import Tooltip from "@mui/material/Tooltip";
-import IconButton from "@mui/material/IconButton";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import TablePagination from "@mui/material/TablePagination";
-import EditIcon from "@mui/icons-material/Edit";
-import { getComparator, stableSort } from "./utils";
-import EnhancedTableHead from "./EnhancedTableHead";
-import EnhancedTableToolbar from "./EnhancedTableToolbar";
-import { listTypesTable } from "../../../utils/listTypes";
-import { v4 as uuidv4 } from "uuid";
+import React, { useState } from 'react';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import TableContainer from '@mui/material/TableContainer';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import Checkbox from '@mui/material/Checkbox';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import TablePagination from '@mui/material/TablePagination';
+import EditIcon from '@mui/icons-material/Edit';
+import { getComparator, stableSort } from './utils';
+import EnhancedTableHead from './EnhancedTableHead';
+import EnhancedTableToolbar from './EnhancedTableToolbar';
+import { listTypesTable } from '../../../utils/listTypes';
+import { v4 as uuidv4 } from 'uuid';
 
 const EnhancedTable = ({
   headCells,
@@ -28,15 +28,15 @@ const EnhancedTable = ({
   selected,
   setSelected,
 }) => {
-  const [order, setOrder] = useState("asc");
-  const [orderBy, setOrderBy] = useState("calories");
+  const [order, setOrder] = useState('asc');
+  const [orderBy, setOrderBy] = useState('calories');
   const [page, setPage] = useState(0);
   const [dense, setDense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const handleRequestSort = (event, property) => {
-    const isAsc = orderBy === property && order === "asc";
-    setOrder(isAsc ? "desc" : "asc");
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
 
@@ -66,7 +66,7 @@ const EnhancedTable = ({
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
+        selected.slice(selectedIndex + 1),
       );
     }
 
@@ -85,11 +85,10 @@ const EnhancedTable = ({
   const isSelected = (id) => selected.indexOf(id) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
   return (
-    <Box sx={{ width: "100%" }}>
-      <Paper sx={{ width: "100%", mb: 2 }}>
+    <Box sx={{ width: '100%' }}>
+      <Paper sx={{ width: '100%', mb: 2 }}>
         <EnhancedTableToolbar
           numSelected={selected}
           clearSelectedOrders={clearSelectedOrders}
@@ -99,7 +98,7 @@ const EnhancedTable = ({
           <Table
             sx={{ minWidth: 750 }}
             aria-labelledby="tableTitle"
-            size={dense ? "small" : "medium"}
+            size={dense ? 'small' : 'medium'}
           >
             <EnhancedTableHead
               headCells={headCells}
@@ -135,7 +134,7 @@ const EnhancedTable = ({
                               onChange={(event) => handleClick(event, order.id)}
                               checked={isItemSelected}
                               inputProps={{
-                                "aria-labelledby": labelId,
+                                'aria-labelledby': labelId,
                               }}
                             />
                           </TableCell>

@@ -1,14 +1,13 @@
-import styled from "styled-components";
-import polygon from "../../../assets/mainLayout/polygon.svg";
+import styled from 'styled-components';
+import polygon from '../../../assets/mainLayout/polygon.svg';
 
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 export const StyledWrapper = styled.div`
   height: 100vh;
   width: 220px;
   background: url(${polygon}) center / cover no-repeat;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   div:first-child {
     margin: 40px 0;
   }

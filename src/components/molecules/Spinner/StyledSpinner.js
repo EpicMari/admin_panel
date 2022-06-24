@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 export const StyledWrapper = styled.div`
   display: grid;
   place-items: center;
@@ -22,7 +22,7 @@ export const StyledLoadingSpinner = styled.div`
     -18.01938px -8.67767px 0 -1px ${({ theme }) => theme.colors.lightBlue},
     -4.45042px -19.49856px 0 1px ${({ theme }) => theme.colors.lightBlue},
     12.4698px -15.63663px 0 2px ${({ theme }) => theme.colors.lightBlue};
-  content: "";
+  content: '';
   height: 8px;
   width: 8px;
 `;

@@ -1,14 +1,11 @@
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AuthContext } from "../context";
-import { auth } from "../firebase/firebaseConfig";
-import { usersCollection } from "../firebase/firestoreUtils";
-import { setUser } from "../redux/actions";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AuthContext } from '../context';
+import { auth } from '../firebase/firebaseConfig';
+import { usersCollection } from '../firebase/firestoreUtils';
+import { setUser } from '../redux/actions';
 
 const AuthProvider = ({ children }) => {
   const dispatch = useDispatch();
@@ -36,7 +33,7 @@ const AuthProvider = ({ children }) => {
     dispatch(setUser(null));
     signInWithEmailAndPassword(auth, email, password)
       .then((user) => {
-        console.log(user, "signIn");
+        console.log(user, 'signIn');
       })
       .catch((err) => console.log(err));
   };
@@ -63,7 +60,7 @@ const AuthProvider = ({ children }) => {
           }
         });
       } else {
-        dispatch(setUser("signedout"));
+        dispatch(setUser('signedout'));
       }
     });
     return verificationUser;

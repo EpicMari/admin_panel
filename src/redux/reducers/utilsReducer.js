@@ -1,12 +1,12 @@
-import { actionsTypes } from "../actions/actionsTypes";
+import { actionsTypes } from '../actions/actionsTypes';
 
 const initialState = {
-  modalConfig: { isModalOpen: false, modalType: "" },
+  modalConfig: { isModalOpen: false, modalType: '' },
   coordinates: { lat: 50.25, lot: 19 },
   weatherData: null,
   messages: [],
   unreadQuantity: 0,
-  messagesLabel: "INBOX",
+  messagesLabel: 'INBOX',
 };
 
 const utilsReducer = (state = initialState, action) => {

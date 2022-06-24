@@ -1,6 +1,6 @@
-import React from "react";
-import LogoIcon from "../../../assets/mainLayout/data-graph-svgrepo-com.svg";
-import { StyledLogo, StyledLogoBox, StyledSpan } from "./StyledLogo";
+import React from 'react';
+import LogoIcon from '../../../assets/mainLayout/data-graph-svgrepo-com.svg';
+import { StyledLogo, StyledLogoBox, StyledSpan } from './StyledLogo';
 
 const Logo = ({ size }) => {
   return (

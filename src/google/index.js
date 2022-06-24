@@ -1,4 +1,4 @@
-import moment from "moment";
+import moment from 'moment';
 
 // export const mountScripts = () => {
 //   return new Promise((resolve, reject) => {
@@ -39,13 +39,13 @@ export const fetchEmails = async () => {
 
   const gmailApi = window.gapi.client.gmail.users;
   const threadsList = await gmailApi.threads.list({
-    userId: "me",
+    userId: 'me',
     maxResults: 500,
     includeSpamTrash: true,
   });
 
   threadsList.result.threads.forEach(({ id }) =>
-    threadsPromisesArr.push(gmailApi.threads.get({ userId: "me", id }))
+    threadsPromisesArr.push(gmailApi.threads.get({ userId: 'me', id })),
   );
 
   const threads = await Promise.all(threadsPromisesArr);
@@ -58,18 +58,14 @@ export const formatThreads = (threads) => {
     const id = result.id;
 
     const date = moment(
-      result.messages[0].payload.headers.find(
-        (header) => header.name === "Date"
-      ).value,
-      "ddd, DD MMM YYYY"
-    ).format("ddd, D MMM YYYY");
+      result.messages[0].payload.headers.find((header) => header.name === 'Date').value,
+      'ddd, DD MMM YYYY',
+    ).format('ddd, D MMM YYYY');
 
-    const from = result.messages[0].payload.headers.find(
-      (header) => header.name === "From"
-    ).value;
+    const from = result.messages[0].payload.headers.find((header) => header.name === 'From').value;
 
     const subject = result.messages[0].payload.headers.find(
-      (header) => header.name === "Subject"
+      (header) => header.name === 'Subject',
     ).value;
 
     const messagesArr = result.messages;
@@ -87,7 +83,7 @@ export const formatThreads = (threads) => {
 
 export const countUnreadThreads = (threads) => {
   return threads.reduce((acc, curr) => {
-    if (curr.result.messages[0].labelIds.includes("UNREAD")) {
+    if (curr.result.messages[0].labelIds.includes('UNREAD')) {
       return acc + 1;
     }
     return acc;

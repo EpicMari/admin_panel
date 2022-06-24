@@ -1,4 +1,4 @@
-import { actionsTypes } from "../actions/actionsTypes";
+import { actionsTypes } from '../actions/actionsTypes';
 
 const initialState = {
   orders: [],
@@ -25,9 +25,7 @@ const ordersReducer = (state = initialState, action) => {
     case actionsTypes.SHOW_PRODUCTS_FROM_ORDER:
       return {
         ...state,
-        showProductsFromOrder: state.orders.find((order) =>
-          payload.includes(order.docId)
-        ),
+        showProductsFromOrder: state.orders.find((order) => payload.includes(order.docId)),
       };
     case actionsTypes.DELETE_ORDERS:
       return {
@@ -43,7 +41,7 @@ const ordersReducer = (state = initialState, action) => {
       return {
         ...state,
         showProductsFromDeletedOrder: state.deletedOrders.find((order) =>
-          payload.includes(order.docId)
+          payload.includes(order.docId),
         ),
       };
     default:

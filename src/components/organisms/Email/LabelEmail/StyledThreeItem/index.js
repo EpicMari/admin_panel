@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import TreeItem, { treeItemClasses } from "@mui/lab/TreeItem";
-import Typography from "@mui/material/Typography";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import TreeItem, { treeItemClasses } from '@mui/lab/TreeItem';
+import Typography from '@mui/material/Typography';
 
 const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
   color: theme.palette.text.secondary,
@@ -13,19 +13,19 @@ const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
     borderBottomRightRadius: theme.spacing(2),
     paddingRight: theme.spacing(1),
     fontWeight: theme.typography.fontWeightMedium,
-    "&.Mui-expanded": {
+    '&.Mui-expanded': {
       fontWeight: theme.typography.fontWeightRegular,
     },
-    "&:hover": {
+    '&:hover': {
       backgroundColor: theme.palette.action.hover,
     },
-    "&.Mui-focused, &.Mui-selected, &.Mui-selected.Mui-focused": {
+    '&.Mui-focused, &.Mui-selected, &.Mui-selected.Mui-focused': {
       backgroundColor: `var(--tree-view-bg-color, ${theme.palette.action.selected})`,
-      color: "var(--tree-view-color)",
+      color: 'var(--tree-view-color)',
     },
     [`& .${treeItemClasses.label}`]: {
-      fontWeight: "inherit",
-      color: "inherit",
+      fontWeight: 'inherit',
+      color: 'inherit',
     },
   },
   [`& .${treeItemClasses.group}`]: {
@@ -37,26 +37,15 @@ const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
 }));
 
 const StyledTreeItem = (props) => {
-  const {
-    bgColor,
-    color,
-    labelIcon: LabelIcon,
-    labelInfo,
-    labelText,
-    setLabel,
-    ...other
-  } = props;
+  const { bgColor, color, labelIcon: LabelIcon, labelInfo, labelText, setLabel, ...other } = props;
 
   return (
     <StyledTreeItemRoot
       onClick={setLabel}
       label={
-        <Box sx={{ display: "flex", alignItems: "center", p: 0.5, pr: 0 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', p: 0.5, pr: 0 }}>
           <Box component={LabelIcon} color="inherit" sx={{ mr: 1 }} />
-          <Typography
-            variant="body2"
-            sx={{ fontWeight: "inherit", flexGrow: 1 }}
-          >
+          <Typography variant="body2" sx={{ fontWeight: 'inherit', flexGrow: 1 }}>
             {labelText}
           </Typography>
           <Typography variant="caption" color="inherit">
@@ -65,8 +54,8 @@ const StyledTreeItem = (props) => {
         </Box>
       }
       style={{
-        "--tree-view-color": color,
-        "--tree-view-bg-color": bgColor,
+        '--tree-view-color': color,
+        '--tree-view-bg-color': bgColor,
       }}
       {...other}
     />

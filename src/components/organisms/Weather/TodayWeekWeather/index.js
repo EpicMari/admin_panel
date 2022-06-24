@@ -1,26 +1,23 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  dayConventer,
-  sunriseSunset,
-} from "../../../../utils/conventerFunctions";
-import { listTypesWeather } from "../../../../utils/listTypes";
-import Paragraph from "../../../atoms/Paragraph";
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { dayConventer, sunriseSunset } from '../../../../utils/conventerFunctions';
+import { listTypesWeather } from '../../../../utils/listTypes';
+import Paragraph from '../../../atoms/Paragraph';
 import {
   StyledBoxTemperature,
   StyledSpanTemperature,
   StyledSwiperContainer,
   StyledWeatherCard,
   StyledWeatherImg,
-} from "./StyledTodayWeekWeather";
-import { v4 as uuidv4 } from "uuid";
+} from './StyledTodayWeekWeather';
+import { v4 as uuidv4 } from 'uuid';
 
 const TodayWeekWeather = ({ weekWeather, hourlyWeather, swiperWeather }) => {
-  const degree = "\u00B0";
-  const celsius = "\u0043";
+  const degree = '\u00B0';
+  const celsius = '\u0043';
   return (
     <StyledSwiperContainer>
-      <Swiper slidesPerView={"auto"} spaceBetween={30}>
+      <Swiper slidesPerView={'auto'} spaceBetween={30}>
         {swiperWeather === listTypesWeather.week
           ? weekWeather.map((item) => {
               return (
@@ -38,9 +35,9 @@ const TodayWeekWeather = ({ weekWeather, hourlyWeather, swiperWeather }) => {
                         {degree} -
                       </StyledSpanTemperature>
                       <StyledSpanTemperature>
-                        {" "}
+                        {' '}
                         {Math.round(item.temp.night)}
-                        {degree} {""} {celsius}
+                        {degree} {''} {celsius}
                       </StyledSpanTemperature>
                     </StyledBoxTemperature>
                   </StyledWeatherCard>

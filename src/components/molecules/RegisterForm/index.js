@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
-import TextField from "@mui/material/TextField";
-import Paragraph from "../../atoms/Paragraph";
-import { routes } from "../../../routes";
-import { Form, Formik } from "formik";
-import { registerFormSchema } from "../../../utils/validationSchema";
-import { AuthContext } from "../../../context";
-import { Button } from "@mui/material";
-import { useHistory } from "react-router-dom";
-import { StyledLogInBox } from "./StyledRegisterForm";
+import React, { useContext } from 'react';
+import TextField from '@mui/material/TextField';
+import Paragraph from '../../atoms/Paragraph';
+import { routes } from '../../../routes';
+import { Form, Formik } from 'formik';
+import { registerFormSchema } from '../../../utils/validationSchema';
+import { AuthContext } from '../../../context';
+import { Button } from '@mui/material';
+import { useHistory } from 'react-router-dom';
+import { StyledLogInBox } from './StyledRegisterForm';
 
 const RegisterForm = () => {
   const { createAcc } = useContext(AuthContext);
@@ -16,11 +16,11 @@ const RegisterForm = () => {
     <>
       <Formik
         initialValues={{
-          firstName: "",
-          lastName: "",
-          email: "",
-          password: "",
-          confirmPassword: "",
+          firstName: '',
+          lastName: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
         }}
         validationSchema={registerFormSchema}
         onSubmit={(values, { resetForm }) => {
@@ -80,11 +80,7 @@ const RegisterForm = () => {
         <Paragraph size="l" color="grey">
           Already have account?
         </Paragraph>
-        <Button
-          color="primary"
-          variant="outlined"
-          onClick={() => history.push(routes.login)}
-        >
+        <Button color="primary" variant="outlined" onClick={() => history.push(routes.login)}>
           Log In
         </Button>
       </StyledLogInBox>

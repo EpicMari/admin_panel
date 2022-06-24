@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { routes } from "../../../routes";
-import HomeIcon from "@mui/icons-material/Home";
-import LogoutIcon from "@mui/icons-material/Logout";
-import EmailIcon from "@mui/icons-material/Email";
-import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
-import BookIcon from "@mui/icons-material/Book";
-import Logo from "../../atoms/Logo";
+import React, { useContext } from 'react';
+import { routes } from '../../../routes';
+import HomeIcon from '@mui/icons-material/Home';
+import LogoutIcon from '@mui/icons-material/Logout';
+import EmailIcon from '@mui/icons-material/Email';
+import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
+import BookIcon from '@mui/icons-material/Book';
+import Logo from '../../atoms/Logo';
 import {
   StyledButton,
   StyledFirstNav,
@@ -15,8 +15,8 @@ import {
   StyledSecondNav,
   StyledSpan,
   StyledWrapper,
-} from "./StyledNavBar";
-import { AuthContext } from "../../../context";
+} from './StyledNavBar';
+import { AuthContext } from '../../../context';
 
 const NavBar = () => {
   const { signOut } = useContext(AuthContext);

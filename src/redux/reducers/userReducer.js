@@ -1,4 +1,4 @@
-import { actionsTypes } from "../actions/actionsTypes";
+import { actionsTypes } from '../actions/actionsTypes';
 
 const initialState = { currentUser: null, googleAcc: null };
 
