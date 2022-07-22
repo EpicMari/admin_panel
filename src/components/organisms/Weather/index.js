@@ -50,7 +50,7 @@ const Weather = () => {
         swiperWeather={swiperWeather}
       />
       <StyledHighlights>
-        <StyledHighlightsHeading>Today's Highlights</StyledHighlightsHeading>
+        <StyledHighlightsHeading>Today&apos;s Highlights</StyledHighlightsHeading>
         <StyledCard>
           <Paragraph size="l" align="left" color="grey">
             UV Index

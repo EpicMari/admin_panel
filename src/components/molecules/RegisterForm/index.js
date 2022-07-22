@@ -2,12 +2,13 @@ import React, { useContext } from 'react';
 import TextField from '@mui/material/TextField';
 import Paragraph from '../../atoms/Paragraph';
 import { routes } from '../../../routes';
-import { Form, Formik } from 'formik';
+import { Form, Formik, ErrorMessage } from 'formik';
 import { registerFormSchema } from '../../../utils/validationSchema';
 import { AuthContext } from '../../../context';
 import { Button } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { StyledLogInBox } from './StyledRegisterForm';
+import CustomErrorMessage from '../../atoms/CustomErrorMessage';
 
 const RegisterForm = () => {
   const { createAcc } = useContext(AuthContext);
@@ -24,8 +25,6 @@ const RegisterForm = () => {
         }}
         validationSchema={registerFormSchema}
         onSubmit={(values, { resetForm }) => {
-          console.log(values);
-
           const { email, password, firstName, lastName } = values;
           createAcc(email, password, firstName, lastName);
           resetForm();
@@ -40,6 +39,7 @@ const RegisterForm = () => {
               value={values.firstName}
               onChange={handleChange}
             />
+            <ErrorMessage name="firstName" component={CustomErrorMessage} />
             <TextField
               variant="standard"
               label="Last Name"
@@ -47,6 +47,7 @@ const RegisterForm = () => {
               value={values.lastName}
               onChange={handleChange}
             />
+            <ErrorMessage name="lastName" component={CustomErrorMessage} />
             <TextField
               variant="standard"
               label="Email Address"
@@ -54,6 +55,7 @@ const RegisterForm = () => {
               value={values.email}
               onChange={handleChange}
             />
+            <ErrorMessage name="email" component={CustomErrorMessage} />
             <TextField
               variant="standard"
               label="Password"
@@ -62,14 +64,16 @@ const RegisterForm = () => {
               value={values.password}
               onChange={handleChange}
             />
+            <ErrorMessage name="password" component={CustomErrorMessage} />
             <TextField
               variant="standard"
-              label="Confirm Passowrd"
+              label="Confirm Password"
               type="password"
               name="confirmPassword"
               value={values.confirmPassword}
               onChange={handleChange}
             />
+            <ErrorMessage name="confirmPassword" component={CustomErrorMessage} />
             <Button variant="contained" type="submit">
               SIGN UP
             </Button>

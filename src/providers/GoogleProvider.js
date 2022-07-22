@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { GoogleContext } from '../context';
 import { countUnreadThreads, fetchEmails, formatThreads } from '../google';
 import { setGoogleAcc, setMessages, setUndeadQuantity } from '../redux/actions';
@@ -58,11 +58,8 @@ const GoogleProvider = ({ children }) => {
     };
 
     if (gapi.client.getToken() === null) {
-      // Prompt the user to select a Google Account and ask for consent to share their data
-      // when establishing a new session.
       tokenClient.requestAccessToken({ prompt: 'consent' });
     } else {
-      // Skip display of account chooser and consent dialog for an existing session.
       tokenClient.requestAccessToken({ prompt: '' });
     }
   };

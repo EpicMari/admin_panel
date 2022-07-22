@@ -12,7 +12,7 @@ const Trash = () => {
   const selected = useSelector(({ ordersReducer }) => ordersReducer.selected);
 
   const mappedDeletedOrders = deletedOrders.map(
-    ({ docId, createdAt, email, name, products, status, totalPrice, userName }) => {
+    ({ docId, createdAt, email, name, products, status, totalPrice }) => {
       return {
         id: docId,
         name,

@@ -12,7 +12,7 @@ const Orders = () => {
   const selected = useSelector(({ ordersReducer }) => ordersReducer.selected);
 
   const mappedOrders = orders.map(
-    ({ docId, createdAt, email, name, products, status, totalPrice, userName }) => {
+    ({ docId, createdAt, email, name, products, status, totalPrice }) => {
       return {
         id: docId,
         name,

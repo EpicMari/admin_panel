@@ -49,7 +49,7 @@ const Modal = () => {
   let tableArray = [];
   if (whatArray) {
     const mappedProductsFromOrder = whatArray.products.map(
-      ({ quantity, price, image, category, name, inCartQuantity, description, id }) => {
+      ({ price, category, name, inCartQuantity, id }) => {
         return { id, name, price, inCartQuantity, category };
       },
     );

@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 import TextField from '@mui/material/TextField';
 import { routes } from '../../../routes';
-import { Formik, Form } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import { loginFormSchema } from '../../../utils/validationSchema';
 import { AuthContext } from '../../../context';
 import { Button } from '@mui/material';
 import Paragraph from '../../atoms/Paragraph';
 import { useHistory } from 'react-router-dom';
 import { StyledSignUpBox } from './StyledLoginForm';
+import CustomErrorMessage from '../../atoms/CustomErrorMessage';
 
 const LoginForm = () => {
   const { signIn } = useContext(AuthContext);
@@ -35,6 +36,7 @@ const LoginForm = () => {
               value={values.email}
               onChange={handleChange}
             />
+            <ErrorMessage name="email" component={CustomErrorMessage} />
             <TextField
               variant="standard"
               label="Password"
@@ -43,6 +45,7 @@ const LoginForm = () => {
               value={values.password}
               onChange={handleChange}
             />
+            <ErrorMessage name="password" component={CustomErrorMessage} />
             <Button variant="contained" type="submit">
               Login
             </Button>
@@ -51,7 +54,7 @@ const LoginForm = () => {
       </Formik>
       <StyledSignUpBox>
         <Paragraph size="l" color="grey">
-          Don't have account?
+          Don&apos;t have account?
         </Paragraph>
         <Button color="primary" variant="outlined" onClick={() => history.push(routes.register)}>
           Sign Up
